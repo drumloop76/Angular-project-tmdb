@@ -1,0 +1,58 @@
+@import "src/styles.scss";
+
+.container-fluid {
+    background-color: rgb(41, 41, 41);
+    background-color: $black30;
+}
+.carousel-wrapper {
+    background-color: $black0;
+}
+.header-div {
+    h2 {
+        @include titles;
+    }
+    p {
+        color: $white30;
+        font-size: 18px;
+        letter-spacing: .5px;
+        margin-bottom: 2rem;
+        a {
+            color: $yellow;
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+}
+.swiper-slide {
+    width: 200px;
+    overflow: hidden;
+}
+.img-container {
+    @include movieContainer;
+}
+::ng-deep.swiper-slide {
+    background-color: $black6;
+    .title-container {
+        overflow: hidden;
+        color: $white;
+        height: 3rem;
+        margin-bottom: 0;
+        padding: 2px 5px;
+        text-overflow: ellipsis;
+        cursor: pointer;
+    }    
+}
+::ng-deep.swiper-button-next,
+::ng-deep.swiper-button-prev {
+    background-color: $black-opacity10;
+    color: $white30;
+    padding: 1.8rem 1.2rem;
+    &:hover {
+        background-color: $black-opacity11;
+        color: $white;
+    }
+}
+.info {
+    @include movieInfo;
+}

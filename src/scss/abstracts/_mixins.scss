@@ -61,3 +61,43 @@
     border-radius: 2px;
     z-index: 200;
 }
+
+@mixin titles {
+    color: $orange;
+    letter-spacing: .5px;
+    margin-bottom: 1rem;
+    margin-top: 4rem;
+}
+
+@mixin movieContainer {
+    background-color: $black6;
+    overflow: hidden;
+    cursor: pointer;
+    img {
+        transition: transform .3s ease;
+    }
+    &:hover {
+        img {
+            transform: scale(1.05);
+            transition: transform .3s ease;
+        }
+    }
+}
+
+@mixin movieInfo {
+    padding: 4px 2px 2px 2px;
+    color: $white30;
+    .title-container {
+        overflow: hidden;
+        color: $white30;
+        height: 2.5rem;
+        text-overflow: ellipsis;
+        cursor: pointer;
+    }
+    fa-icon {
+        color: $yellow;
+        margin-right: 6px;
+        padding-top: 3px;
+        font-size: 12px;
+    }
+}

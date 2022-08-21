@@ -15,7 +15,8 @@ import { FontAwesomeModule, FaIconLibrary } from '@fortawesome/angular-fontaweso
 import { faFacebook, faFacebookF, faGoogle, faInstagram, faTwitter, faYoutube, faYoutubeSquare } from '@fortawesome/free-brands-svg-icons';
 import { faEllipsisVertical, faMagnifyingGlass, faUser, faStar, faAngleDown, faXmark, faPlay } from '@fortawesome/free-solid-svg-icons';
 import { ClickedOutsideDirective } from './shared/directives/clicked-outside.directive';
-import { NgbTypeaheadModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbTypeaheadModule, NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
+import { SwiperModule } from 'swiper/angular';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,9 @@ import { NgbTypeaheadModule } from '@ng-bootstrap/ng-bootstrap';
     FormsModule,
     HttpClientModule,
     FontAwesomeModule,
-    NgbTypeaheadModule
+    NgbTypeaheadModule,
+    SwiperModule,
+    NgbCarouselModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
