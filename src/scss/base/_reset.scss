@@ -1,0 +1,11 @@
+@import '../abstracts/variables';
+
+body {
+    overflow-x: hidden;
+    font-family: $primary_font;
+}
+
+a, a:link {
+    text-decoration: none;
+    color: $white30;
+}

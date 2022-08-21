@@ -1,1 +1,207 @@
-<p>header works!</p>
+<div class="container-fluid g-0">
+    <div class="layer">
+        <div class="container-xxl px-xxl-0 px-lg-4 px-0">
+            <nav class="navbar navbar-expand-lg py-0">
+                <div class="menu-wrapper" appClickedOutside (clickedOutside)="clickedOutsideNavMenu()">
+                    <button class="navbar-toggler menu-toggler d-lg-none"
+                        type="button"
+                        (click)="toggleNavMenu()">
+                        <div class="burger-bar bar1" [@menuToggler]="!navMenuOpen ? 'burger' : 'topBar'"></div>
+                        <div class="burger-bar bar2" [@menuToggler]="!navMenuOpen ? 'burger' : 'middleBar'"></div>
+                        <div class="burger-bar bar3" [@menuToggler]="!navMenuOpen ? 'burger' : 'bottomBar'"></div>
+                    </button>
+                    <div class="nav-menu"
+                        id="toggleMainMenu"
+                        [@openCloseNav]="navMenuOpen ? true : false">
+                        <ul class="navbar-nav menu">
+                            <li class="nav-item">
+                                <a href="javascript: void(0)" 
+                                    class="nav-link"
+                                    (click)="closeInsideNav()"
+                                    [routerLink]="['/home']">
+                                    Home
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="javascript: void(0)" 
+                                    class="nav-link"
+                                    (click)="closeInsideNav()"
+                                    [routerLink]="['/about']">
+                                    About
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="javascript: void(0)" 
+                                    class="nav-link"
+                                    id="dropdownBtn"
+                                    role="button"
+                                    (click)="toggleDropdown()"
+                                    appClickedOutside (clickedOutside)="clickedOutsideDropdown()">
+                                    Categories
+                                    <fa-icon class="caret py-0 ps-0 pe-0" 
+                                            [icon]="['fas', 'angle-down']"
+                                            [@rotateCaret]="dropdownOpen ? false : true">
+                                    </fa-icon>
+                                </a>
+                                <ul class="dropdown-menu rounded-0 p-0 overflow-hidden border-0"
+                                    aria-labelledby="dropdownBtn"
+                                    [ngClass]="{ 'show': dropdownOpen ? dropdownOpen : !dropdownOpen }"
+                                    [@openCloseDropdown]="dropdownOpen ? true : false">
+                                    <li class="dropdown-item p-0">
+                                        <a href="javascript: void(0)" 
+                                            class="dropdown-link"
+                                            (click)="closeInsideNav()"
+                                            [routerLink]="['/movies']">
+                                            Movies
+                                        </a>
+                                    </li>
+                                    <li class="dropdown-item p-0">
+                                        <a href="javascript: void(0)" 
+                                            class="dropdown-link"
+                                            (click)="closeInsideNav()"
+                                            [routerLink]="['/shows']">
+                                            TV Shows
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a href="javascript: void(0)" 
+                                    class="nav-link"
+                                    (click)="closeInsideNav()"
+                                    [routerLink]="['/contact']">
+                                    Contact
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <a href="#" class="navbar-brand position-absolute top-50 start-50 translate-middle m-0 p-0">
+                    SciFiMovies
+                </a>
+
+                <div class="action-menu ms-auto">
+                    <a href="javascript: void(0)"
+                        class="action-item"
+                        type="button"
+                        (click)="toggleNavSearch()">
+                        <fa-icon [icon]="['fas', 'magnifying-glass']" [@rotateIcon]="state"></fa-icon>
+                    </a>
+                    <a href="javascript: void(0)" 
+                        class="action-item"
+                        type="button">
+                        <fa-icon [icon]="['fas', 'user']"></fa-icon>
+                    </a>
+                </div>
+
+                <div class="vr mx-2 my-auto"></div>
+
+                <div class="media-container">
+                    <button class="navbar-toggler media-toggler"
+                            type="button"
+                            (click)="toggleMediaMenu()"
+                            appClickedOutside (clickedOutside)="clickedOutsideMedia()">
+                            <span class="navbar-toggler--icon">
+                                <fa-icon class="togglerBtns" [icon]="['fas', 'ellipsis-v']"></fa-icon>
+                            </span>
+                    </button>
+                    <div class="media-menu"
+                        id="navbarMediaList"
+                        [ngClass]="{ 'show': navMediaOpen }"
+                        [@openCloseMedia]="navMediaOpen ? true : false">
+                        <ul class="navbar-nav d-flex flex-lg-row flex-column">
+                            <li class="media-item">
+                                <a href="https://sr-rs.facebook.com/" 
+                                    class="media-link px-lg-2 px-3 py-lg-0 py-1" 
+                                    target="_blank">
+                                    <fa-icon [icon]="['fab', 'facebook']"></fa-icon>
+                                    <p class="d-lg-none ms-3 mb-0">Facebook</p>
+                                </a>
+                            </li>
+                            <li class="media-item">
+                                <a href="https://twitter.com/?lang=sr" 
+                                    class="media-link px-lg-2 px-3 py-lg-0 py-1" 
+                                    target="_blank">
+                                    <fa-icon [icon]="['fab', 'twitter']"></fa-icon>
+                                    <p class="d-lg-none ms-3 mb-0 align-middle">Twitter</p>
+                                </a>
+                            </li>
+                            <li class="media-item">
+                                <a href="https://www.instagram.com/" 
+                                    class="media-link px-lg-2 px-3 py-lg-0 py-1" 
+                                    target="_blank">
+                                    <fa-icon [icon]="['fab', 'instagram']"></fa-icon>
+                                    <p class="d-lg-none ms-3 mb-0">Instagram</p>
+                                </a>
+                            </li>
+                            <li class="media-item">
+                                <a href="https://www.google.com/" 
+                                    class="media-link px-lg-2 px-3 py-lg-0 py-1" 
+                                    target="_blank">
+                                    <fa-icon [icon]="['fab', 'google']"></fa-icon>
+                                    <p class="d-lg-none ms-3 mb-0">Google</p>
+                                </a>
+                            </li>
+                            <li class="media-item">
+                                <a href="https://www.youtube.com/" 
+                                    class="media-link px-lg-2 px-3 py-lg-0 py-1" 
+                                    target="_blank">
+                                    <fa-icon [icon]="['fab', 'youtube-square']"></fa-icon>
+                                    <p class="d-lg-none ms-3 mb-0">YouTube</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+        <div class="overlay d-lg-none" [ngClass]="{ 'show': navMenuOpen }"></div>
+    </div>
+</div>
+
+<div class="container-fluid g-0 shadow searchBox" 
+    #searchBox
+    id="navSearchContainer"
+    [@toggleNavSearch]="navbarSearchOpen ? true : false">
+    <div class="container nav-search py-1 d-flex">
+        <div class="search-wrapper col-lg-8 col-md-10 col-12 mx-auto py-2 d-inline-flex align-items-center">
+            <div class="">
+                <select class="select"
+                    (change)="selectCategory($event)">
+                    <option value="multi">All</option>
+                    <option value="movie">Movies</option>
+                    <option value="tv">Series</option>
+                    <option value="person">Celebs</option>
+                </select>
+            </div>
+            <input id="typeahead-http" type="text" 
+                class="control col-12 " 
+                [class.is-invalid]="searchFailed" 
+                [(ngModel)]="model" 
+                [ngbTypeahead]="search" 
+                [inputFormatter]="formatter"
+                [resultFormatter]="formatter"
+                [resultTemplate]="rt"
+                placeholder="Search..." 
+                />
+            <ng-template #rt let-r="result" let-t="term" class="search-dropdown container-fluid col-lg-8 col-md-10 col-12 p-0">
+                <div class="w-100 d-flex" [routerLink]="r.title ? ['/movie', r.id] : r.name ? ['/series', r.id] : ['/person', r.id]"
+                    (click)="closeInsideSearch()">
+                    <div class="img-container">
+                        <img *ngIf="r.poster_path" [src]="'https://image.tmdb.org/t/p/w500' + r.poster_path" class="me-1" style="width: 50px">
+                        <img *ngIf="r.profile_path" [src]="'https://image.tmdb.org/t/p/w500' + r.profile_path" class="me-1" style="width: 50px">
+                        <img *ngIf="!r.poster_path && !r.profile_path" src="./assets/images/no_img.png" class="image-border" style="width: 50px">
+                    </div>            
+                    <div class="info-container d-flex flex-column">
+                        <ngb-highlight *ngIf="r.title" class="title" [result]="r.title" [term]="t"></ngb-highlight>
+                        <ngb-highlight *ngIf="r.name" class="title" [result]="r.name" [term]="t"></ngb-highlight>
+                        <ngb-highlight *ngIf="r.release_date" class="year" [result]="r.release_date | date:'yyyy'" [term]="t"></ngb-highlight>
+                        <ngb-highlight *ngIf="r.first_air_date" class="year" [result]="r.first_air_date | date:'yyyy'" [term]="t"></ngb-highlight>
+                        <ngb-highlight *ngIf="r.known_for_department" class="year" [result]="r.known_for_department" [term]="t"></ngb-highlight>
+                    </div>
+                </div>
+            </ng-template>
+        </div>
+    </div>
+</div>

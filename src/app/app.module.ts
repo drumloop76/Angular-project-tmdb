@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -8,9 +9,13 @@ import { FooterComponent } from './core/footer/footer.component';
 import { HomeComponent } from './main/home/home.component';
 import { AboutComponent } from './main/about/about.component';
 import { ContactComponent } from './main/contact/contact.component';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 import { FontAwesomeModule, FaIconLibrary } from '@fortawesome/angular-fontawesome';
 import { faFacebook, faFacebookF, faGoogle, faInstagram, faTwitter, faYoutube, faYoutubeSquare } from '@fortawesome/free-brands-svg-icons';
 import { faEllipsisVertical, faMagnifyingGlass, faUser, faStar, faAngleDown, faXmark, faPlay } from '@fortawesome/free-solid-svg-icons';
+import { ClickedOutsideDirective } from './shared/directives/clicked-outside.directive';
+import { NgbTypeaheadModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -19,12 +24,17 @@ import { faEllipsisVertical, faMagnifyingGlass, faUser, faStar, faAngleDown, faX
     FooterComponent,
     HomeComponent,
     AboutComponent,
-    ContactComponent
+    ContactComponent,
+    ClickedOutsideDirective,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FontAwesomeModule
+    BrowserAnimationsModule,
+    FormsModule,
+    HttpClientModule,
+    FontAwesomeModule,
+    NgbTypeaheadModule
   ],
   providers: [],
   bootstrap: [AppComponent]

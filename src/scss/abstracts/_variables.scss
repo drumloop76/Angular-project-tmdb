@@ -1,0 +1,49 @@
+@import '../modules/fonts';
+
+// Colors
+$black0: #000000;
+$black10: #0E1013;
+$black20: #17181B;
+$black30: #202124;
+$black40: #282A2D;
+$black50: #2E3134;
+$black60: #3C4043;
+$black70: #5F6368;
+
+$black6: #30363C;
+$black5: #212529;
+$black4: #202427;
+$black3: #1D2124;
+
+$white: #FFFFFF;
+$white10: #F8F9FA;
+$white20: #F1F3F4;
+$white30: #E8EAED;
+$white40: #d7d7df;
+$white50: #BDC1C6;
+$white60: #9AA0A6;
+$white70: #80868B;
+
+$white-opacity10: rgba(255, 255, 255, 0.075);
+$green-opacity10: rgba(0, 255, 255, 0.137);
+$green-opacity11: rgba(0, 255, 255, 0.281);
+$black-opacity10: rgba(0, 0, 0, 0.411);
+$black-opacity11: rgba(0, 0, 0, 0.61);
+
+$blue1: #1361c7;
+
+// Font
+$primary_font: 'Roboto';
+
+$font-thin: 100;
+$font-light: 300;
+$font-regular: 400;
+$font-medium: 500;
+$font-bold: 700;
+$font-black: 900;
+
+$font-xs: 12px;
+$font-sm: 14px;
+$primary-fs: 16px;
+$font-md: 18px;
+$font-lg: 20px;

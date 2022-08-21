@@ -1,0 +1,63 @@
+// 1400px
+@mixin media-xxl {
+    @include media-breakpoint-down(xxl) {
+        @content;
+    }
+}
+
+// 1200px
+@mixin media-xl {
+    @include media-breakpoint-down(xl) {
+        @content;
+    }
+}
+
+// 992px
+@mixin media-lg {
+    @include media-breakpoint-down(lg) {
+        @content;
+    }
+}
+
+// 768px
+@mixin media-md {
+    @include media-breakpoint-down(md) {
+        @content;
+    }
+}
+
+// 516px
+@mixin media-sm {
+    @include media-breakpoint-down(sm) {
+        @content;
+    }
+}
+
+@mixin toggler {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    top: 5px;
+    border: none;
+    outline: none;
+    @include media-sm {
+        top: 0;
+    }
+    &:focus,
+    &:active,
+    &-icon:focus {
+        outline: none;
+        box-shadow: none;
+    }
+}
+
+@mixin bars {
+    position: absolute;
+    content: '';
+    display: block;
+    width: 21px;
+    height: 2.5px;
+    background: $white20;
+    border-radius: 2px;
+    z-index: 200;
+}

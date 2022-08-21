@@ -1,0 +1,330 @@
+@import "src/styles.scss";
+
+.layer {
+    background-color: $black10;
+    position: relative;
+    z-index: 1000 !important;
+}
+.navbar {
+    position: relative;
+    height: 60px;
+    @include media-lg {
+        height: 50px;
+    }
+    @include media-sm {
+        height: 40px;
+    }
+}
+.menu-wrapper {
+    @include media-lg {
+        width: 0;
+    }
+}
+.nav-menu {
+    @include media-lg {
+        position: fixed;
+        background-color: $black20; 
+        height: 100vh;
+        width: 300px;
+        top: 0;
+        z-index: 1400 !important;
+    }
+    .menu {
+        @include media-lg {
+            padding-top: 5rem;
+        }
+    }
+}
+.menu .nav-item {
+    .nav-link {
+        font-size: $font-md;
+        line-height: 24px;
+        color: $white40;
+        @include media-lg  {
+            line-height: 34px;
+            padding-left: 2rem;
+            z-index: 1100;
+        }
+        &:hover {
+            color: $white;
+            @include media-lg {
+                background-color: $black30;
+            }
+        }
+        &:focus {
+            color: none;
+        }
+        &:active {
+            color: cornflowerblue;
+        }
+        .caret {
+            font-size: 15px;
+            margin-left: 3px;
+            @include media-lg {
+                float: right;
+                margin-right: 2rem
+            }
+        }
+    }
+}
+.menu-toggler {
+    @include toggler;
+    left: 15px;
+    z-index: 1500;
+    .bar1 {
+        @include bars;
+        top: 12px;
+        left: 10px
+    }
+    .bar2 {
+        @include bars;
+        top: 18px;
+        left: 10px
+    }
+    .bar3 {
+        @include bars;
+        top: 24px;
+        left: 10px
+    }
+}
+
+//////////////// dropdown ////////////////
+.dropdown-menu {
+    background-color: $black20;
+    top: 60px;
+    border: none;
+}
+.dropdown-item {
+    background: $black40;
+    &:hover {
+        background: $black50;
+    }
+    .dropdown-link {
+        display: block;
+        padding: 10px 0 14px 20px;
+        color: $white40;
+        font-size: 17px;
+        line-height: 20px;
+        text-decoration: none;
+        @include media-lg {
+            padding: 10px 0 14px 40px;
+        }
+        &:hover {
+            color: $white;
+        }
+    }
+}
+
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.603);
+    z-index: 1098 !important;
+    opacity: 0;
+    transition: all 0.5s ease-in-out;
+    &.show {
+        display: block;
+        opacity: 1;
+        transition: all 0.5s ease-in-out;
+    }
+}
+
+//////////////// nav-brand ////////////////
+.navbar-brand {
+    color: $white10;
+    font-size: 28px;
+    font-weight: 900;
+    letter-spacing: .5px;
+    @include media-lg {
+        font-size: 25px;
+    }
+    @include media-sm {
+        display: none;
+    }
+    &:hover {
+        color: cornflowerblue;
+    }
+}
+
+//////////////// nav-action ////////////////
+.action-menu {
+    @include media-lg {
+        position: absolute;
+        right: 70px;
+    }
+    .action-item {
+        padding: .3rem .1rem;
+        fa-icon {
+            color: $white40;
+            font-size: 1.1rem;
+            padding: .5rem;
+            display: flex;
+        }
+    }
+}
+.vr {
+    color: $white70;
+    min-height: 1rem;
+    height: 1.7rem;
+    opacity: 1;
+    @include media-lg {
+        position: absolute;
+        top: 12px;
+        right: 50px;
+    }
+    @include media-sm {
+        top: 7px;
+    }
+}
+
+///////////////// media-toggler ///////////////
+.media-toggler {
+    @include toggler;
+    right: 15px;
+    z-index: 1000;
+}
+.navbar-toggler--icon {
+    font-size: 0;
+    color: $white40;
+    padding-left: 0;
+    .togglerBtns {
+        position: absolute;
+        font-size: 22px;
+        top: 21%;
+        right: 50%;
+        transform: translateX(50%);
+    }
+}
+
+///////////////// nav-media /////////////////
+.media-menu {
+    @include media-lg {
+        background-color: $black50;
+        position: absolute;
+        right: 0px;
+        opacity: 0;
+        visibility: hidden;
+        transition: .2s ease-out;
+        
+    }
+    @include media-sm {
+        top: 40px;
+    }
+    .navbar-nav {
+        @include media-lg {
+            padding: 0;
+        }
+    }
+}
+.media-menu.show {
+    opacity: 1;
+    visibility: visible;
+}
+.media-menu .media-item {
+    @include media-lg {
+        padding: 0 30px 0 10px;
+        border-bottom: 1px solid $white30;
+        &:last-child {
+            border-bottom: none;
+        }
+    }
+    .media-link {
+        color: $white40;
+        text-decoration: none;
+        transition: all .3s;
+        @include media-lg {
+            display: flex;
+            align-items: center;
+        }
+        p {
+            line-height: 40px;
+        }
+        &:hover {
+            .ng-fa-icon, p {
+                color: $white;
+                transition: all .2s;
+            }
+        }
+    }
+}
+
+//////////////// search ////////////////
+.searchBox {
+    position: absolute;
+    background: $black40;
+    z-index: 300;
+}
+.search-wrapper {
+    position: relative;
+}
+.select {
+    position: absolute;
+    background-color: $black6;
+    color: $white20;
+    border-radius: none;
+    top: 8px;
+    height: 35px;
+    width: 8rem;
+    padding: 0 10px;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    @include media-lg {
+        width: 6rem;
+    }
+    &:focus,
+    &:active,
+    &-icon:focus {
+        outline: none;
+        box-shadow: none;
+    }
+    &:hover {
+        background-color: $black20;
+    }
+    option {
+        cursor: pointer;
+        &:hover {
+            background-color: $black40;
+        }
+    }
+}
+.control {
+    height: 35px;
+    padding-left: 8.5rem;
+    @include media-lg {
+        padding-left: 6.5rem;
+    }
+}
+::ng-deep #ngb-typeahead-0 {
+    position: relative;
+    padding: 0;
+    width: 100%;
+    border-radius: none;
+}
+::ng-deep .dropdown-item {
+    background: $black20;
+    display: flex;
+    border-bottom: 1px solid $black50;
+    padding: 10px 10px;
+    --bs-dropdown-link-active-bg: #2e2e2e;
+    &:hover {
+        background: $black50;
+    }
+}
+.info-container {
+    margin-left: 15px;
+    .title {
+        color: $white30;
+    }
+    .year {
+        color: $white40;
+    }
+}
+.image-border {
+    border: solid 1px $white70;
+    width: 50px;
+    height: 70px;
+}
