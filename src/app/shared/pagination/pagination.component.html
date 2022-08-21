@@ -1,0 +1,16 @@
+<div class="row g-0 mt-4">
+    <div class="container-xxl g-0">
+        <div class="col d-flex aling-items-center">
+            <ngb-pagination 
+                class=" mx-auto"
+                [collectionSize]="collectionSize" 
+                [(page)]="page" 
+                [maxSize]="5" 
+                [rotate]="true" 
+                [boundaryLinks]="true"
+                (pageChange)="onPageChanged($event)"
+                >  
+            </ngb-pagination>
+        </div>
+    </div>
+</div>
