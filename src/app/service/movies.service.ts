@@ -56,5 +56,10 @@ export class MoviesService {
   getRecommendedMovies(id: string): Observable<any> {
     return this.http.get(`${this.baseUrl}movie/${id}/recommendations?api_key=${this.apiKey}`);
   }
+
+
+  getTopRated(): Observable<any> {
+    return this.http.get(`${this.baseUrl}discover/movie?api_key=${this.apiKey}&sort_by=vote_count.desc&with_genres=${this.sciFiGenre}&language=en-US&page=1`);
+  }
 }
 

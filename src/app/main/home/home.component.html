@@ -1,9 +1,9 @@
 <div class="container-fluid g-0">
-    <!-- <div class="carousel-wrapper row g-0 ">
+    <div class="carousel-wrapper row g-0 ">
         <div class="carousel-container col">
-            <app-hero-carousel></app-hero-carousel>
+            <app-hero-carousel [movies]="nowPlayingMovies"></app-hero-carousel>
         </div>
-    </div> -->
+    </div>
     <div class="row g-0 ">
         <div class="col">
             <div class="container-xxl col-lg-10 col-11 px-0">
@@ -150,7 +150,51 @@
             </div>
         </div>
     </div>
-    <div class="row g-0 ">
+
+    <div class="row g-0">
+        <div class="col">
+            <div class="container-xxl col-lg-10 col-11 px-0">
+                <div class="header-div mx-auto mb-4">
+                    <h2>Most popular SciFi Movies</h2>
+                </div>
+                <div class="table-container col mx-auto">
+                    <table class="table table-borderless text-light">
+                        <thead>
+                            <tr class="">
+                                <th>#</th>
+                                <th>Name</th>
+                                <th>Release date</th>
+                                <th>Votes</th>
+                                <th>Rating</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="t_data" 
+                                *ngFor="let mov of topRated; index as i" 
+                                [routerLink]="['/movie', mov.id]" 
+                                container="body" 
+                                placement="top-left" 
+                                [ngbTooltip]="tipContent">   
+                                <td>{{ i + 1 }}.</td>
+                                <td class="td_title" >
+                                    {{ mov.title }}
+                                    <ng-template #tipContent>
+                                        <img src="{{ imageUrl + mov.poster_path }}" width="150px">
+                                    </ng-template>
+                                </td>
+                                <td>{{ mov.release_date | date }}</td>
+                                <td>{{ mov.vote_count }}</td>
+                                <td>{{ mov.vote_average }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row g-0 pb-5">
         <div class="col">
             <div class="container-xxl col-lg-10 col-11 px-0">
                 <div class="header-div mx-auto">
@@ -226,6 +270,10 @@
             </div>
         </div>
     </div>
+
+    
+
+
     <!-- <div class="row g-0 ">
         <div class="col">
             <app-home-counter></app-home-counter>

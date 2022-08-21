@@ -101,3 +101,13 @@
         font-size: 12px;
     }
 }
+
+@mixin carouselArrows {
+    background-color: rgba(0, 255, 255, 0.137);
+    color: $white;
+    width: 60px;
+    height: 60px;
+    border-radius: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+}

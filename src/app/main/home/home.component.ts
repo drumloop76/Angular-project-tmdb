@@ -17,6 +17,8 @@ export class HomeComponent implements OnInit {
   upcomingMovies: any[] = [];
   imageUrl = 'https://image.tmdb.org/t/p/w500';
 
+  topRated: any[] = [];
+
   noImage = './assets/images/no_img2.png'
 
   slides = Array.from({ length: 20 }).map(
@@ -30,6 +32,7 @@ export class HomeComponent implements OnInit {
     this.getPopularMovies();
     this.getUpcomingMovies();
     this.getPopularSeries();
+    this.getTopRated();
   }
 
   getNowPlaying(): void {
@@ -57,6 +60,14 @@ export class HomeComponent implements OnInit {
     this.serviceTv.getPopularSeries().subscribe((data: any) => {
       // console.log(data.results)
       this.shows = data.results.slice(0, 16);
+    });
+  }
+
+
+  getTopRated(): void {
+    this.service.getTopRated().subscribe((data: any) => {
+      console.log(data.results)
+      this.topRated = data.results.slice(0, 10);
     });
   }
 }

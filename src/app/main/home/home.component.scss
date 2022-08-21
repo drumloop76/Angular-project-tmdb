@@ -56,3 +56,30 @@
 .info {
     @include movieInfo;
 }
+
+///////////////////////////////////////////
+table thead tr:first-child {
+    background-color: $black50;
+    border-bottom: 1px solid $white70;
+}
+
+table tr:nth-child(even) {
+    background-color: $black5;
+}
+
+table tr:nth-child(odd) {
+    background-color: $black3;
+}
+
+table tbody tr:hover {
+    // transform: scale(1.01);
+    background-color: $black7;
+    cursor: pointer;
+    .td_title {
+        color: $yellow;
+    }
+}
+
+:host .tooltip-inner {
+    max-width: 150px;
+}

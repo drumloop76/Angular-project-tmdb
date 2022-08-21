@@ -1,0 +1,118 @@
+@import "src/styles.scss";
+
+.carousel-wrapper {
+    background-color: $black;
+}
+.picsum-img-wrapper {
+    &::after {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        display: block;
+        content: "";
+        background-image: linear-gradient(
+            to left,
+            $black0 0,
+            $black0 30%,
+            transparent 50%,
+            transparent 100%
+        );
+        @include media-lg {
+            background-image: linear-gradient(
+            to top,
+            $black0 0,
+            $black0 20%,
+            transparent 40%,
+            transparent 100%
+            );
+        }
+    }
+    img {
+        position: relative;
+        width: 70%;
+        @include media-lg {
+            width: 100%;
+        }
+        &:hover {
+            scale: 1.1;
+        }
+    }
+}
+::ng-deep .carousel-control-next {
+    @include carouselArrows;
+    right: 2%;
+}
+::ng-deep .carousel-control-prev {
+    @include carouselArrows;
+    left: 2%;
+}
+// ::ng-deep .carousel-control-prev-icon {
+    // color: $white;
+    // opacity: 1;
+// }
+.carousel-caption {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 70%;
+    padding: .5rem 1rem;
+    @include media-lg {
+        position: relative;
+        width: 100%;
+        height: fit-content;
+        left: 0;
+        padding-top: 0;
+        padding-bottom: 1rem;
+    }
+    .title {
+        font-size: 32px;
+        letter-spacing: .5px;
+        color: $white30;
+        padding-bottom: .8rem;
+        text-align: start;
+        @include media-lg {
+            text-align: left;
+            font-size: 32px;
+            margin-bottom: 0;
+        }
+        @include media-md {
+            font-size: 30px;
+            font-weight: 600;
+        }
+        @include media-sm {
+            font-size: 26px;
+        }
+        &:hover {
+            color: $white;
+        }
+    }
+    
+}
+.info-container {
+    position: relative;
+    @include media-lg {
+        padding-bottom: 1.5rem;
+    }
+    .info {
+        float: left;
+        span {
+            color: $white40;
+        }
+        .vr {
+            color: $white70;
+            opacity: 1;
+            margin: 0 10px;
+            padding-bottom: 0;
+            margin-bottom: 0;
+        }
+        fa-icon {
+            margin-right: 5px;
+            padding-top: 3px;
+            color: $yellow;
+            font-size: 12px;
+        }
+    }    
+}
