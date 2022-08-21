@@ -1,1 +1,48 @@
-<p>shows works!</p>
+<div class="container-fluid g-0">
+    <div class="row g-0 ">
+        <div class="col">
+            <div class="container-xxl col-lg-10 col-11 mx-auto my-4 p-0">
+                <h2 class="header mx-2">All SciFi TV Shows</h2>
+            </div>
+        </div>
+    </div>
+    <div class="row g-0">
+        <div class="col">
+            <div class="container-xxl col-lg-10 col-11 mb-3 p-0 d-flex">
+                <div class="page-info col-lg-4 mx-2">
+                    <span class="text-light b-0">Page no. {{ currentPage }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row g-0">
+        <div class="container-fluid g-0">
+            <div class="container-xxl col-lg-10 col-md-12 col-sm-12 col-12 d-flex flex-wrap justify-content-lg-between justify-content-evenly p-0 mb-4">
+                <div class="movie-container col-md-2 col-sm-3 col-5 d-flex flex-column mb-5 mx-nd-1 mx-sm-2 p-1" 
+                    *ngFor="let show of allSeries" 
+                    [routerLink]="['/show', show.id]">
+                    <div class="img-container position-relative mb-auto">                        
+                        <img class="img w-100" *ngIf="show?.poster_path" src="https://image.tmdb.org/t/p/w500/{{ show?.poster_path }}" alt="show.title ? show.title : show.name">
+                        <img class="img w-100" *ngIf="!show?.poster_path" src="assets/images/no_image.png" alt="show.title ? show.title : show.name">
+                    </div>
+                    <div class="template info">
+                        <div class="title-container lh-sm">
+                            {{show.name}}
+                        </div>
+                        <div class="info d-inline-flex pt-3">
+                            <span>{{ show?.release_date | date:"yyyy" }}</span>
+                            <div class="vr mx-2"></div>
+                            <fa-icon [icon]="['fas', 'star']"></fa-icon>
+                            <span>{{show?.vote_average}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <app-pagination [collectionSize]="collectionSize"  (onChange)="onPageChanged($event)"></app-pagination>
+</div>
+
+
+
+

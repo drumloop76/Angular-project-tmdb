@@ -24,4 +24,28 @@ export class TvShowsService {
   getPopularSeries(): Observable<any> {
     return this.http.get(`${this.baseUrl}tv/popular?api_key=${this.apiKey}&with_genres=${this.sciFiGenre}&language=${this.language}`);
   }
+
+  getSfTopRatedSeries(page: number, pageSize: number): Observable<any> {
+    return this.http.get(`${this.baseUrl}tv/top_rated?api_key=${this.apiKey}&with_genres=${this.sciFiGenre}&language=${this.language}&page=${page}`);
+  }
+
+  getOneShowDetails(id: string): Observable<any> {
+    return this.http.get(`${this.baseUrl}tv/${id}?api_key=${this.apiKey}&language=${this.language}`);
+  }
+
+  getShowCredits(id: string) {
+    return this.http.get(`${this.baseUrl}tv/${id}/credits?api_key=${this.apiKey}&language=${this.language}`);
+  }
+
+  getShowImages(id: string) {
+    return this.http.get(`${this.baseUrl}tv/${id}/images?api_key=${this.apiKey}`);
+  }
+
+  getShowVideos(id: any) {
+    return this.http.get(`${this.baseUrl}tv/${id}/videos?api_key=${this.apiKey}&language=${this.language}`);
+  }
+
+  getSimilarSeries(id: string) {
+    return this.http.get(`${this.baseUrl}tv/${id}/similar?api_key=${this.apiKey}&language=${this.language}`);
+  }
 }

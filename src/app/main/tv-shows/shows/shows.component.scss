@@ -1,0 +1,41 @@
+@import "src/styles.scss";
+
+.container-fluid {
+    background-color: $black30;
+}
+.header {
+    color: $yellow;
+}
+.movie-container {
+    background-color: $black6;
+    .img-container {
+        overflow: hidden;
+        cursor: pointer;
+        .img {
+            transition: transform .4s ease;
+        }
+    }
+    &:hover {
+        .img {
+            transform: scale(1.07);
+            transition: transform .4s ease;
+        }
+    }
+}
+.info {
+    padding: 4px 2px 2px 2px;
+    color: $white30;
+    .title-container {
+        overflow: hidden;
+        color: $white30;
+        height: 2.5rem;
+        text-overflow: ellipsis;
+        cursor: pointer;
+    }
+    fa-icon {
+        color: $yellow;
+        margin-right: 6px;
+        padding-top: 3px;
+        font-size: 12px;
+    }
+}
