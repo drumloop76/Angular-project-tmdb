@@ -41,12 +41,14 @@ export class HeaderComponent implements OnInit {
 
   clickedOutsideNavMenu(): void {
     this.navMenuOpen = false;
-    this.bodyScroll();
+    // this.bodyScroll();
+    this.body.style.overflow = "auto";
   }
 
   closeInsideNav(): void {
     this.navMenuOpen = !this.navMenuOpen;
-    this.bodyScroll();
+    // this.bodyScroll();
+    this.body.style.overflow = "auto";
   }
 
   bodyScroll() {

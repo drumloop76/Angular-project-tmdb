@@ -24,40 +24,22 @@
         }
     }
 }
-.swiper-slide {
-    width: 200px;
-    overflow: hidden;
-}
-.img-container {
-    @include movieContainer;
-}
-::ng-deep.swiper-slide {
-    background-color: $black6;
-    .title-container {
-        overflow: hidden;
-        color: $white;
-        height: 3rem;
-        margin-bottom: 0;
-        padding: 2px 5px;
-        text-overflow: ellipsis;
-        cursor: pointer;
-    }    
+
+
+/////////////////// swiper ////////////////
+// ::ng-deep.swiper-wrapper {
+    // height: auto;
+// }
+::ng-deep.sw-temlate {
+    @include swiperTemplate;
 }
 ::ng-deep.swiper-button-next,
 ::ng-deep.swiper-button-prev {
-    background-color: $black-opacity10;
-    color: $white30;
-    padding: 1.8rem 1.2rem;
-    &:hover {
-        background-color: $black-opacity11;
-        color: $white;
-    }
-}
-.info {
-    @include movieInfo;
+    @include swiperArrows;
 }
 
-///////////////////////////////////////////
+
+////////////////// table //////////////////
 table thead tr:first-child {
     background-color: $black50;
     border-bottom: 1px solid $white70;

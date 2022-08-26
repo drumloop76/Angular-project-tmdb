@@ -18,6 +18,7 @@ import { ClickedOutsideDirective } from './shared/directives/clicked-outside.dir
 import { NgbTypeaheadModule, NgbCarouselModule, NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
 import { SwiperModule } from 'swiper/angular';
 import { HeroCarouselComponent } from './main/home/hero-carousel/hero-carousel.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { HeroCarouselComponent } from './main/home/hero-carousel/hero-carousel.c
     ContactComponent,
     ClickedOutsideDirective,
     HeroCarouselComponent,
+    PageNotFoundComponent,
   ],
   imports: [
     BrowserModule,

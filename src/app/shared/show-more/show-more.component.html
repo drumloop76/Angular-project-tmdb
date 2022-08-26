@@ -1,0 +1,7 @@
+<span>
+    {{text}}
+    <span *ngIf="textLength < text.length">
+        <a class="cursor" *ngIf="!isShowMore" (click)="toggleShow()">Read more</a>
+        <a class="cursor" *ngIf="isShowMore" (click)="toggleShow()">Read less</a>
+    </span>
+</span>

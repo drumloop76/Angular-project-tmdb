@@ -110,4 +110,94 @@
     border-radius: 100%;
     top: 50%;
     transform: translateY(-50%);
+    @include media-sm {
+
+    }
+}
+
+@mixin commas {
+    margin-right: 10px;
+    &:not(:last-child):after {
+        content: ',';
+    }
+    a {
+        color: $black;
+    }
+}
+
+///////////////// swiper //////////////////////
+@mixin swiperTemplate {
+    background-color: $black6;
+    height: auto;
+    position: relative;
+    overflow: hidden;
+    .img-container {
+        background-color: $black6;
+        overflow: hidden;
+        cursor: pointer;
+        img {
+            transition: transform .3s ease;
+        }
+        &:hover {
+            img {
+                transform: scale(1.05);
+                transition: transform .3s ease;
+            }
+        }
+    }
+    .info-container {
+        position: relative;
+        overflow: hidden;
+        .title-container {
+            overflow: hidden;
+            color: $white;
+            height: 2.5rem;
+            margin-bottom: 0;
+            padding: 2px 5px;
+            text-overflow: ellipsis;
+            cursor: pointer;
+        }  
+        .info {
+            padding: 4px 2px 2px 5px;
+            color: $white30;
+            .title-container {
+                overflow: hidden;
+                color: $white30;
+                height: 2.5rem;
+                text-overflow: ellipsis;
+                cursor: pointer;
+            }
+            fa-icon {
+                color: $yellow;
+                margin-right: 6px;
+                padding-top: 3px;
+                font-size: 12px;
+            }
+        } 
+    }
+}
+@mixin swiperArrows {
+    background-color: $black-opacity10;
+    color: $white30;
+    padding: 1.8rem 1.2rem;
+    @include media-sm {
+        padding: 1.5rem 1rem;
+    }
+    &:hover {
+        background-color: $black-opacity11;
+        color: $white;
+    }
+    &::after {
+        font-size: 35px;
+        @include media-sm {
+            font-size: 30px;
+        }
+    }
+}
+
+@mixin playIcon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }

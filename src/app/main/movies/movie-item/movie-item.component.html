@@ -1,1 +1,478 @@
-<p>movie-item works!</p>
+<div class="container-xxl g-0 bg-light">
+    <div class="col-lg-10 mx-auto">
+         
+        <div class="hero-container col-sm-12 col-11 mx-auto py-2 pe-sm-3 d-flex justify-content-center align-items-center">
+            <div class="hero-img-container col-sm-8 col-12 mx-sm-3 mx-auto position-relative">
+                <img *ngIf="trailerUrl" class="hero-img col-12" src="https://img.youtube.com/vi/{{trailer?.key}}/mqdefault.jpg" alt="">
+                <div class="hero-play-icon">
+                    <img src="./assets/images/play-button.png" alt="play-button"  width="80px" height="80px">
+                </div>
+            </div>
+            <div class="hero-poster-container col-sm-3 pl-sm-2 ps-10">
+                <img class="hero-poster col-12" src="{{ imageUrl }}{{ movie?.poster_path }}" alt="">
+            </div>
+        </div>
+
+        <div class="movie-info col-lg-12 col-11 mx-auto d-lg-flex justify-content-center">
+            <div class="container-left col-lg-8">
+                <div class="header-container mt-lg-3 mb-lg-3 mb-0">
+                    <span class="title lh-sm me-3 mb-0">{{ movie?.title }}</span>
+                    <p class="year pb-0 mb-1">( {{ movie?.release_date | date:"yyyy" }} )</p>
+                </div>
+                <div class="genres-container d-inline-flex" *ngFor="let gen of movie?.genres">
+                    <span class="me-2 my-0 align-middle border border-dark rounded mt-2 px-1">{{ gen.name }}</span>
+                </div>
+                <hr class="col-lg-11">
+                <div class="col-11 d-flex">
+                    <dt class="fw-bold me-2">Overview: </dt>
+                    <div class="text d-flex" *ngIf="movie">
+                        <app-show-more [text]="movie?.overview" [textLength]="140"></app-show-more>
+                    </div>
+                </div>
+                <hr class="col-lg-11">
+                <div class="col-11 d-flex">
+                    <dt class="fw-bold me-2 mb-0">Director: </dt>
+                    <div class="cast-container">
+                        <div class="cast-container-list d-inline-block mb-0 split" *ngFor="let dir of directors">
+                            <a *ngIf="directors" class="mb-0">{{ dir.name }}</a>
+                        </div>
+                    </div>
+                </div>
+                <hr class="col-lg-11">
+                <div class="cast col-11 d-flex">
+                    <dt class="fw-bold me-2">Cast: </dt>
+                    <div class="cast-container">
+                        <div class="cast-container-list d-inline-block split" *ngFor="let c of cast | slice:0:3">
+                            <a class="mb-0">{{ c.name }}</a>
+                        </div>
+                    </div>
+                </div>
+                <hr class="col-lg-11">
+            </div>
+
+            <div class="container-right col-lg-3 d-lg-block d-flex flex-column mt-4">
+
+                <div class="rating col-12 mb-3 ps-3">
+                    <fa-icon class="me-2" [icon]="['fas', 'star']"></fa-icon>
+                    <span>{{ movie?.vote_average | number:'1.1-1' }} / 10</span>
+                </div>
+
+                <div class="d-lg-block d-flex">
+                    <div class="col-lg-12 col-6">
+                        <div class="reviews d-flex mb-1 ps-3">
+                            <dt class="fw-bold me-2 mb-0">Votes:</dt>
+                            <dd>{{ movie?.vote_count }}</dd>
+                        </div>
+                        <div class="nums d-flex mb-1 ps-3">
+                            <dt class="fw-bold me-2 mb-0">Popularity:</dt>
+                            <dd>{{ movie?.popularity }}</dd>
+                        </div>
+                        <div class="nums d-flex mb-1 ps-3">
+                            <dt class="fw-bold me-2 mb-0">Runtime:</dt>
+                            <dd>{{ movie?.runtime | time }}</dd>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 col-6">
+                        <div class="nums d-flex flex-wrap mb-1 ps-3">
+                            <dt class="fw-bold me-2 mb-0">Release date:</dt>
+                            <dd>{{ movie?.release_date | date }}</dd>
+                        </div>
+                        <div class="nums d-flex flex-wrap mb-1 ps-3">
+                            <dt class="fw-bold me-2 mb-0">Budget:</dt>
+                            <dd *ngIf="movie?.budget !== 0">{{ movie?.budget | currency:'USD':"symbol" }}</dd>
+                            <dd *ngIf="movie?.budget == 0">N/A</dd>
+                        </div>
+                        <div class="nums d-flex mb-1 ps-3">
+                            <dt class="fw-bold me-2 mb-0">Original language:</dt>
+                            <dd *ngIf="movie">{{ movie?.original_language | language | async }}</dd>
+                        </div>
+                        <!-- <div class="nums mb-1 ps-3 d-flex flex-wrap">
+                            <dt class="fw-bold me-2">Spoken languages:</dt>
+                            <dd class="" *ngIf="movie">
+                                <div *ngFor="let l of movie.spoken_languages">
+                                    <p class="mb-1">{{ l.english_name }},</p>
+                                </div>
+                            </dd>
+                        </div> -->
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="video col-11 mx-auto mb-5 mt-5">
+            <div class="col">
+                <div class="header-div mx-auto">
+                    <h2>Videos</h2>
+                </div>
+                <div *ngIf="videos">
+                    <p>Click <a>here</a> and go to video gallery</p>
+                </div>
+            </div>
+            <div class="slider-video-container col mx-auto">
+                <swiper class="mySwiper2"
+                    [slidesPerView]="3" 
+                    [spaceBetween]="25" 
+                    [breakpoints]="{
+                        '0': {
+                            slidesPerView: 1,
+                            spaceBetween: 10
+                        },
+                        '300': {
+                            slidesPerView: 2,
+                            spaceBetween: 10
+                        },
+                        '420': {
+                            slidesPerView: 2,
+                            spaceBetween: 10
+                        },
+                        '516': {
+                            slidesPerView: 2,
+                            spaceBetween: 10
+                        },
+                        '768': {
+                            slidesPerView: 3,
+                            spaceBetween: 12
+                        },
+                        '992': {
+                            slidesPerView: 3,
+                            spaceBetween: 16
+                        },
+                        '1200': {
+                            slidesPerView: 3,
+                            spaceBetween: 18
+                        }
+                    }"
+                    [navigation]="true"
+                    [virtual]="true">
+                    <ng-container *ngFor="let video of videos; index as i">
+                        <ng-template class="sw-temlate" swiperSlide>
+                            <div class="video-container">
+                                <div class="video-img-container position-relative">
+                                    <img *ngIf="video?.site === 'YouTube'" class="video w-100"
+                                        src="https://img.youtube.com/vi/{{video?.key}}/mqdefault.jpg"
+                                        alt="{{video.name}}">
+
+                                    <!-- <img *ngIf="video?.site === 'Vimeo'" class="video w-100"
+                                        src="https://player.vimeo.com/video/{{video?.key}}"
+                                        alt="{{video.name}}"> -->
+                                    <!-- <img class="img w-100" *ngIf="!mov?.poster_path" [src]="src/assets/images/no_img.png" alt="{{mov.title}}"> -->
+                                    <div class="sw-play-icon">
+                                        <!-- <fa-icon [icon]="['fas', 'play']"></fa-icon> -->
+                                        <img src="./assets/images/play-button.png" alt="play-button"  width="60px" height="60px">
+                                    </div>
+                                    
+                                </div>
+                                <p class="video-name py-1 ps-2">{{video?.type}}</p>
+                            </div>
+                            
+                        </ng-template>
+                    </ng-container>
+                </swiper>
+            </div>
+        </div>
+
+        <div class="video col-11 mx-auto mb-5 mt-5">
+            <div class="col">
+                <div class="header-div mx-auto">
+                    <h2>Images</h2>
+                </div>
+                <div *ngIf="movie">
+                    <p>Click <a>here</a> and go to picture gallery</p>
+                </div>
+            </div>
+            
+            <div class="slider-imgs-container col mx-auto">
+                <swiper class="mySwiper2"
+                    [slidesPerView]="3" 
+                    [spaceBetween]="25" 
+                    [breakpoints]="{
+                        '0': {
+                            slidesPerView: 1,
+                            spaceBetween: 10
+                        },
+                        '300': {
+                            slidesPerView: 2,
+                            spaceBetween: 10
+                        },
+                        '420': {
+                            slidesPerView: 2,
+                            spaceBetween: 10
+                        },
+                        '516': {
+                            slidesPerView: 2,
+                            spaceBetween: 10
+                        },
+                        '768': {
+                            slidesPerView: 3,
+                            spaceBetween: 12
+                        },
+                        '992': {
+                            slidesPerView: 3,
+                            spaceBetween: 16
+                        },
+                        '1200': {
+                            slidesPerView: 3,
+                            spaceBetween: 18
+                        }
+                    }"
+                    [navigation]="true"
+                    [virtual]="true">
+                    <ng-container *ngFor="let img of images?.backdrops; index as i">
+                        <ng-template class="sw-temlate" swiperSlide>
+                            <div class="img-container">
+                                <div class="position-relative">
+                                    <img class="img w-100" 
+                                        
+                                        [src]="imageUrl + img.file_path" 
+                                        alt="{{img.title}}">
+                                    <!-- <img class="img w-100" *ngIf="!mov?.poster_path" [src]="src/assets/images/no_img.png" alt="{{mov.title}}"> -->
+                                </div>
+                            </div>
+                        </ng-template>
+                    </ng-container>
+                </swiper>
+            </div>
+        </div>
+
+        <div class="cast col-11 mx-auto mb-5">
+            <div class="header-div mx-auto mb-3">
+                <h2>Cast</h2>
+            </div>
+
+            <div class="slider-cast-container col mx-auto">
+                <swiper class="mySwiper1"
+                    [slidesPerView]="6" 
+                    [spaceBetween]="25" 
+                    [breakpoints]="{
+                        '0': {
+                            slidesPerView: 1,
+                            spaceBetween: 10
+                        },
+                        '300': {
+                            slidesPerView: 2,
+                            spaceBetween: 10
+                        },
+                        '420': {
+                            slidesPerView: 3,
+                            spaceBetween: 10
+                        },
+                        '516': {
+                            slidesPerView: 4,
+                            spaceBetween: 10
+                        },
+                        '768': {
+                            slidesPerView: 5,
+                            spaceBetween: 12
+                        },
+                        '992': {
+                            slidesPerView: 5,
+                            spaceBetween: 10
+                        },
+                        '1200': {
+                            slidesPerView: 6,
+                            spaceBetween: 10
+                        }
+                    }"
+                    [navigation]="true"
+                    [virtual]="true">
+                    <ng-container *ngFor="let c of cast; index as i">
+                        <ng-template class="sw-temlate d-flex flex-column justify-content-between" swiperSlide>
+                            <div class="img-container">
+                                <img class="w-100" 
+                                    *ngIf="c?.profile_path"
+                                    [src]="imageUrl + c?.profile_path" 
+                                    alt="{{c.name}}">
+                                <img class="img w-100" 
+                                    *ngIf="!c?.profile_path" 
+                                    [src]="noImage" 
+                                    width="200px" />
+                            </div>
+                            <div class="info-container pt-1">
+                                <div class="name-container lh-sm">
+                                    {{c.name}}
+                                </div>
+                                <div class="info-cast">
+                                    <span>{{ c?.character }}</span>
+                                </div>
+                            </div>
+                        </ng-template>
+                    </ng-container>
+                </swiper>
+            </div>
+        </div>
+
+        <!-- CREW -->
+
+        <div class="crew-container col-11 mx-auto mb-5">
+            <div class="col">
+                <div class="header-div mx-auto">
+                    <h2>Crew</h2>
+                </div>
+                <div>
+                    <p>Click <a>here</a> and read all reviews</p>
+                </div>
+            </div>
+
+
+
+            <div class="col mx-auto">
+                <div class="col-11 d-flex border-bottom mb-2 pb-2" *ngIf="crew | filterArray:'Director'">
+                    <dt class="fw-bold me-2 mb-0">Director: </dt>
+                    <div class="cast-container">
+                        <div class="cast-container-list d-inline-block mb-0 split" *ngFor="let cr of crew | filterArray:'Director'">
+                            <a class="mb-0">{{ cr?.name }}</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-11 d-flex border-bottom mb-2 pb-2" *ngIf="(crew | filterArray:'Producer').length > 0">
+                    <dt class="fw-bold me-2 mb-0">Producer: </dt>
+                    <div class="cast-container">
+                        <div class="cast-container-list d-inline-block mb-0 split" *ngFor="let cr of crew | filterArray:'Producer'">
+                            <a class="mb-0">{{ cr.name }}</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-11 d-flex border-bottom mb-2 pb-2" *ngIf="(crew | filterArray:'Writer').length > 0">
+                    <dt class="fw-bold me-2 mb-0">Writer: </dt>
+                    <div class="cast-container">
+                        <div class="cast-container-list d-inline-block mb-0 split" *ngFor="let cr of crew | filterArray:'Writer'">
+                            <a class="mb-0">{{ cr.name }}</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-11 d-flex border-bottom mb-2 pb-2" *ngIf="(crew | filterArray:'Casting').length > 0">
+                    <dt class="fw-bold me-2 mb-0">Casting: </dt>
+                    <div class="cast-container">
+                        <div class="cast-container-list d-inline-block mb-0 split" *ngFor="let cr of crew | filterArray:'Casting'">
+                            <a class="mb-0">{{ cr.name }}</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-11 d-flex border-bottom mb-2 pb-2" *ngIf="(crew | filterArray:'Screenplay').length > 0">
+                    <dt class="fw-bold me-2 mb-0">Screenplay: </dt>
+                    <div class="cast-container">
+                        <div class="cast-container-list d-inline-block mb-0 split" *ngFor="let cr of crew | filterArray:'Screenplay'">
+                            <a class="mb-0">{{ cr.name }}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- REWIEVS -->
+
+        <div class="reviews-container col-11 mx-auto mb-5" *ngIf="reviews.length > 0">
+            <div class="col">
+                <div class="header-div mx-auto">
+                    <h2>Reviews</h2>
+                </div>
+                <div>
+                    <p>Click <a>here</a> and read all reviews</p>
+                </div>
+            </div>
+
+            <div class="reviews col mx-auto">
+                <div class="d-flex flex-column" *ngFor="let rev of reviews | slice:0:3" >
+                    <div class="review-content border rounded mb-3 p-2 shadow-sm">
+                        <div class="d-flex justify-content-between">
+                            <div class="d-flex">
+                                <p class="author me-2">Author: </p>
+                                <p class="author-name fw-bold me-2">{{ rev?.author }}</p>
+                                <p class="">({{ rev?.created_at | date:"MMM d, y" }})</p>
+                            </div>
+                            <div class="d-flex">
+                                <p class="me-2">user rating: </p>
+                                <span class="fw-bold">{{ rev?.author_details.rating }}</span>
+                            </div>
+                        </div>
+                        <div class="">
+                            <app-show-more [text]="rev?.content" [textLength]="200"></app-show-more>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+        <div class="cast col-11 mx-auto mb-5">
+            <div class="header-div mx-auto">
+                <h2>Recommended Movies</h2>
+            </div>
+            <div class="slider-cast-container col mx-auto">
+                <swiper class="mySwiper1"
+                    [slidesPerView]="6" 
+                    [spaceBetween]="25" 
+                    [breakpoints]="{
+                        '0': {
+                            slidesPerView: 1,
+                            spaceBetween: 10
+                        },
+                        '300': {
+                            slidesPerView: 2,
+                            spaceBetween: 10
+                        },
+                        '420': {
+                            slidesPerView: 3,
+                            spaceBetween: 10
+                        },
+                        '516': {
+                            slidesPerView: 4,
+                            spaceBetween: 10
+                        },
+                        '768': {
+                            slidesPerView: 5,
+                            spaceBetween: 12
+                        },
+                        '992': {
+                            slidesPerView: 5,
+                            spaceBetween: 10
+                        },
+                        '1200': {
+                            slidesPerView: 6,
+                            spaceBetween: 10
+                        }
+                    }"
+                    [navigation]="true"
+                    [virtual]="true">
+                    <ng-container *ngFor="let movs of recommendedMovies; index as i">
+                        <ng-template class="sw-temlate d-flex flex-column justify-content-between" swiperSlide>
+                            <div class="img-container" [routerLink]="['/movie', movs.id]">
+                                <img class="w-100" 
+                                    *ngIf="movs?.poster_path"
+                                    [src]="imageUrl + movs.poster_path" 
+                                    alt="{{movs.name}}">
+                                <img class="w-100" 
+                                    *ngIf="!movs?.poster_path" 
+                                    [src]="noImage" 
+                                    alt="{{movs.title}}" />
+                            </div>
+                            <div class="info-container pt-1" [routerLink]="['/movie', movs.id]">
+                                <div class="title-container lh-sm">
+                                    {{movs.title}}
+                                </div>
+                                <div class="info d-inline-flex pt-3">
+                                    <span>{{ movs?.release_date | date:"yyyy" }}</span>
+                                    <div class="vr mx-2"></div>
+                                    <fa-icon [icon]="['fas', 'star']"></fa-icon>
+                                    <span>{{movs?.vote_average}}</span>
+                                </div>
+                            </div>
+                        </ng-template>
+                    </ng-container>
+                </swiper>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+

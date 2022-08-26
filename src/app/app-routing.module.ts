@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AboutComponent } from './main/about/about.component';
 import { ContactComponent } from './main/contact/contact.component';
 import { HomeComponent } from './main/home/home.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -13,8 +14,7 @@ const routes: Routes = [
   { path: 'shows', loadChildren: () => import('./main/tv-shows/shows/shows.module').then(m => m.ShowsModule) }, 
   { path: 'show/:id', loadChildren: () => import('./main/tv-shows/show-item/show-item.module').then(m => m.ShowItemModule) },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
-
-  // { path: '**', component: PageNotFoundComponent }
+  { path: '**', component: PageNotFoundComponent }
 ];
 
 @NgModule({
