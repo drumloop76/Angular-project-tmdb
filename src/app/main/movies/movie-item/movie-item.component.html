@@ -107,8 +107,14 @@
                         </span>
                     </h2>
                 </div>
-                <div *ngIf="videos">
-                    <p>Click <a>here</a> and go to video gallery</p>
+                <div *ngIf="movie">
+                    <p>Click 
+                        <a href="javascript: void(0)" 
+                            class="gall-link text-decoration-underline mx-1"
+                            >
+                            here</a> 
+                        and go to video gallery
+                    </p>
                 </div>
             </div>
             <div class="slider-video-container col mx-auto">
@@ -176,15 +182,22 @@
 
         <div class="video col-11 mx-auto mb-5 mt-5">
             <div class="col">
-                <div class="header-div mx-auto">
-                    <h2>Images 
+                <div *ngIf="movie" class="header-div mx-auto">
+                    <h2 [routerLink]="['/movie-image-gall', movie.id]">
+                        Images 
                         <span class="title-nums fw-light pb-5">
                             ({{imagesLength}})
                         </span>
                     </h2>
                 </div>
                 <div *ngIf="movie">
-                    <p>Click <a>here</a> and go to picture gallery</p>
+                    <p>Click 
+                        <a href="javascript: void(0)" 
+                            class="gall-link text-decoration-underline mx-1" 
+                            [routerLink]="['/movie-image-gall', movie.id]">
+                            here</a> 
+                        and go to video gallery
+                    </p>
                 </div>
             </div>
             

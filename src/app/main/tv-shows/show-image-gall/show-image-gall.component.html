@@ -1,0 +1,20 @@
+<div class="container-xxl ">
+    <div class="info col-10 mx-auto mt-4 d-flex" *ngIf="show">
+        <div *ngIf="show" class="col-1" [routerLink]="['/show', show.id]">
+            <img src="{{ imageUrl }}{{ show?.poster_path }}" alt="">
+        </div>
+        <div class="col-11 ps-4">
+            <h3 *ngIf="show" class="">{{show.name}}</h3>
+            <p *ngIf="show" class="">( {{ show?.first_air_date | date:"yyyy" }} )</p>
+        </div>
+    </div>
+    <div class="col-10 mx-auto my-5">
+        <div *ngIf="images" class="gall d-flex flex-wrap">
+            <div class="img-container col-3 p-1" *ngFor="let img of images.backdrops; let index = index">
+                <div [routerLink]="['/show-image-viewer', images.id, index]">
+                    <img class="img" src="{{ imageUrl }}{{ img.file_path }}" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

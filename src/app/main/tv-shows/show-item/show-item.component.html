@@ -190,15 +190,22 @@
 
         <div class="video col-11 mx-auto mb-5 mt-5">
             <div class="col">
-                <div class="header-div mx-auto">
-                    <h2>Images 
+                <div *ngIf="show" class="header-div mx-auto">
+                    <h2 [routerLink]="['/show-image-gall', show.id]">
+                        Images 
                         <span class="title-nums fw-light pb-5">
                             ({{imagesLength}})
                         </span>
                     </h2>
                 </div>
                 <div *ngIf="show">
-                    <p>Click <a>here</a> and go to picture gallery</p>
+                    <p>Click 
+                        <a href="javascript: void(0)" 
+                            class="gall-link text-decoration-underline mx-1" 
+                            [routerLink]="['/show-image-gall', show.id]">
+                            here</a> 
+                        and go to video gallery
+                    </p>
                 </div>
             </div>
             
