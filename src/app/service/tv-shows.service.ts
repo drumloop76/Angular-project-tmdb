@@ -45,6 +45,18 @@ export class TvShowsService {
     return this.http.get(`${this.baseUrl}tv/${id}/videos?api_key=${this.apiKey}&language=${this.language}`);
   }
 
+  getShowReviews(id: string): Observable<any> {
+    return this.http.get(`${this.baseUrl}tv/${id}/reviews?api_key=${this.apiKey}&language=${this.language}&page=1`);
+  }
+
+  // getShowSeasons(id: any, season: any) {
+  //   return this.http.get(`${this.baseUrl}tv/${id}/season/{season_number}?api_key=${this.apiKey}&language=${this.language}`);
+  // }
+
+  // getShowEpisode(id: any, season: sny, episode: any) {
+  //   return this.http.get(`${this.baseUrl}tv/${id}/season/{season_number}/episode/{episode_number}?api_key=${this.apiKey}&language=${this.language}`);
+  // }
+
   getSimilarSeries(id: string) {
     return this.http.get(`${this.baseUrl}tv/${id}/similar?api_key=${this.apiKey}&language=${this.language}`);
   }

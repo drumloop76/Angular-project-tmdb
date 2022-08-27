@@ -18,10 +18,9 @@ export class MovieItemComponent implements OnInit {
   directors: any[] = [];
   cast: any[] = [];
   images: any;
-  // images_previews: any;
-  video!: any;
+  imagesLength: number = 0;
   videos: any[] = [];
-  // relatedvideo: any;
+  videosLength: number = 0;
   recommendedMovies: any[] = [];
   genres: any[] = [];
   reviews: any[] = [];
@@ -71,13 +70,11 @@ export class MovieItemComponent implements OnInit {
       // console.log(data.cast)
       data.crew.map((d: any) => {
         if(d.job === 'Director') {
-          // console.log(d)
           this.directors.push(d)
         }
       })
       this.crew = data.crew;
       this.cast = data.cast;
-      // console.log(this.crew)
     });
   }
 
@@ -85,20 +82,16 @@ export class MovieItemComponent implements OnInit {
     this.service.getMovieImages(id).subscribe((data: any) => {
       // console.log(data)
       this.images = data;
-      // this.images_previews = data.backdrops.slice(0, 3);
+      this.imagesLength = data.backdrops.length;
     });
   }
 
   getMovieVideos(id: any) {
     this.service.getMovieVideos(id).subscribe((data: any) => {
-      // console.log(data.results)
+      this.videosLength = data.results.length;
       if(data.results.length) {
-        // this.videos = data;
         this.videos = data.results;
-        // this.relatedvideo = data.results;
-        // console.log(this.videos);
         this.trailer = data.results.find((v:any) => v.type === 'Trailer');
-        // console.log(this.trailer);
       }
       if(data.results) {
         if(this.trailer.site === 'Vimeo') {

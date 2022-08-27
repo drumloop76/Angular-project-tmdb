@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 
 import { ShowItemRoutingModule } from './show-item-routing.module';
 import { ShowItemComponent } from './show-item.component';
+import { SharedModule } from 'src/app/shared/shared.module';
+import { SwiperModule } from 'swiper/angular';
 
 
 @NgModule({
@@ -11,7 +13,9 @@ import { ShowItemComponent } from './show-item.component';
   ],
   imports: [
     CommonModule,
-    ShowItemRoutingModule
+    ShowItemRoutingModule,
+    SharedModule,
+    SwiperModule
   ]
 })
 export class ShowItemModule { }
