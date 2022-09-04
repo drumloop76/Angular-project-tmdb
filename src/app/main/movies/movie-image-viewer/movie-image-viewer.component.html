@@ -1,0 +1,50 @@
+<div class="container-fluid g-0">
+    <div class="container-xxl g-0" >
+        <div class="action col mx-auto py-2 d-flex align-items-center">
+            <a *ngIf="movie" href="" [routerLink]="['/movie-image-gall', movie.id]">
+                <fa-icon class="closeBtn" [icon]="['fas', 'xmark']"></fa-icon>
+                <a class="text-light ms-2 mb-0">Back to gallery</a>
+            </a>
+        </div>
+        <ngb-carousel class="carousel-container col py-3 mx-auto"
+                    *ngIf="images"
+                    [activeId]="activeIndex"
+                    [keyboard]="true"
+                    [pauseOnHover]="false"
+                    [interval]="0"
+                    [wrap]="true"
+                    [showNavigationIndicators]="false"
+                    [animation]="false"
+                    (slide)="onSlide($event)">
+            <ng-container class="carousel position-relative" *ngFor="let img of images; let i = index">
+                <ng-template class="template mx-auto" ngbSlide id="{{i}}">
+                    <div class="picsum-img-wrapper">
+                        <img class="w-100" [src]="imageUrl + img.file_path" alt="" >
+                    </div>
+                    <div class="carousel-caption col d-flex justify-content-between px-4 py-3">
+                        <div class="">
+                            <h3 class="title">
+                                {{movie?.title}}
+                            </h3>
+                            <div class="info-container ">
+                                <div class="info d-inline-flex">
+                                    <span>{{ movie?.release_date | date:"yyyy" }}</span>
+                                    <div class="vr"></div>
+                                    <fa-icon [icon]="['fas', 'star']"></fa-icon>
+                                    <span>{{movie?.vote_average}}/10</span>
+                                    <div class="vr"></div>
+                                    <span>{{ movie?.vote_count }} Reviews</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="">
+                            <div class="action-info mx-auto">
+                                <p>image {{i + 1}} of {{images.length}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </ng-template>
+            </ng-container >
+        </ngb-carousel>
+    </div>
+</div>

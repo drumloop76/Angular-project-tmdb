@@ -15,8 +15,8 @@ const routes: Routes = [
   { path: 'shows', loadChildren: () => import('./main/tv-shows/shows/shows.module').then(m => m.ShowsModule) }, 
   { path: 'show/:id', loadChildren: () => import('./main/tv-shows/show-item/show-item.module').then(m => m.ShowItemModule) },
   { path: 'show-image-gall/:id', loadChildren: () => import('./main/tv-shows/show-image-gall/show-image-gall.module').then(m => m.ShowImageGallModule) },
+  { path: 'movie-image-viewer/:id/:index', loadChildren: () => import('./main/movies/movie-image-viewer/movie-image-viewer.module').then(m => m.MovieImageViewerModule) },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
-  
   
   { path: '**', component: PageNotFoundComponent }
 ];

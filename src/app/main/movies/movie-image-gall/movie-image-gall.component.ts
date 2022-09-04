@@ -3,6 +3,7 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { Subject } from 'rxjs';
 import { filter, startWith, takeUntil } from 'rxjs/operators';
 import { MoviesService } from 'src/app/service/movies.service';
+import { share } from 'rxjs/operators';
 
 @Component({
   selector: 'app-movie-image-gall',
@@ -41,6 +42,7 @@ export class MovieImageGallComponent implements OnInit, OnDestroy {
 
   getMovieImages(id: any) {
     this.service.getMovieImages(id)
+      .pipe(share())
       .pipe(
         takeUntil(this.ngUnsubscribe))
       .subscribe((data: any) => {
