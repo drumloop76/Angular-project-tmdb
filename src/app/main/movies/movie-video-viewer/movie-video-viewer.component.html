@@ -1,0 +1,23 @@
+<div class="col-lg-10 mx-auto">
+    <div class="hero-container col-12 mx-auto py-2 pe-sm-3 d-flex justify-content-center align-items-center">
+        <div class="hero-img-container col-sm-8 mx-sm-3 mx-auto">
+            <!-- <img *ngIf="" class="hero-img col-12" src="{{  }}{{  }}" alt=""> -->
+            <div class="video-container col-12">
+                <div class="hero-img col-12">
+                    <iframe [src]="videoUrl | safeURL" 
+                            class="w-100"
+                            width="100%" 
+                            height="" 
+                            frameborder="0" 
+                            title="{{ video?.name }}"
+                            allow="autoplay; encrypted-media"
+                            allowfullscreen>
+                    </iframe>  
+                  </div>
+            </div>
+        </div>
+        <div class="hero-poster-container col-sm-3 pl-2">
+            <img class="hero-poster col-12" src="{{ imageUrl }}{{ movie?.poster_path }}" alt="">
+        </div>
+    </div>
+</div>

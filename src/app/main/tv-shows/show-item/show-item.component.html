@@ -114,15 +114,22 @@
 
         <div class="video col-11 mx-auto mb-5 mt-5">
             <div class="col">
-                <div class="header-div mx-auto">
-                    <h2>Videos 
+                <div *ngIf="show" class="header-div mx-auto">
+                    <h2 [routerLink]="['/show-video-gall', show.id]">
+                        Videos 
                         <span class="title-nums fw-light">
                             ({{videosLength}})
                         </span>
                     </h2>
                 </div>
-                <div *ngIf="videos">
-                    <p>Click <a>here</a> and go to video gallery</p>
+                <div *ngIf="show">
+                    <p>Click 
+                        <a href="javascript: void(0)" 
+                            class="gall-link text-decoration-underline mx-1"
+                            [routerLink]="['/show-video-gall', show.id]">
+                            here</a> 
+                        and go to video gallery
+                    </p>
                 </div>
             </div>
             <div class="slider-video-container col mx-auto">
@@ -163,37 +170,28 @@
                     [virtual]="true">
                     <ng-container *ngFor="let video of videos; index as i">
                         <ng-template class="sw-temlate" swiperSlide>
-                            <div class="video-container">
+                            <div class="video-container" [routerLink]="['/show-video-viewer', show?.id, show?.id]">
                                 <div class="video-img-container position-relative">
                                     <img *ngIf="video?.site === 'YouTube'" class="video w-100"
                                         src="https://img.youtube.com/vi/{{video?.key}}/mqdefault.jpg"
                                         alt="{{video.name}}">
-
-                                    <!-- <img *ngIf="video?.site === 'Vimeo'" class="video w-100"
-                                        src="https://player.vimeo.com/video/{{video?.key}}"
-                                        alt="{{video.name}}"> -->
-                                    <!-- <img class="img w-100" *ngIf="!mov?.poster_path" [src]="src/assets/images/no_img.png" alt="{{mov.title}}"> -->
                                     <div class="sw-play-icon">
-                                        <!-- <fa-icon [icon]="['fas', 'play']"></fa-icon> -->
                                         <img src="./assets/images/play-button.png" alt="play-button"  width="60px" height="60px">
-                                    </div>
-                                    
+                                    </div>                                    
                                 </div>
                                 <p class="video-name py-1 ps-2">{{video?.type}}</p>
-                            </div>
-                            
+                            </div>                            
                         </ng-template>
                     </ng-container>
                 </swiper>
             </div>
         </div>
-
         <div class="video col-11 mx-auto mb-5 mt-5">
             <div class="col">
                 <div *ngIf="show" class="header-div mx-auto">
                     <h2 [routerLink]="['/show-image-gall', show.id]">
                         Images 
-                        <span class="title-nums fw-light pb-5">
+                        <span class="title-nums fw-light">
                             ({{imagesLength}})
                         </span>
                     </h2>
@@ -204,11 +202,10 @@
                             class="gall-link text-decoration-underline mx-1" 
                             [routerLink]="['/show-image-gall', show.id]">
                             here</a> 
-                        and go to video gallery
+                        and go to image gallery
                     </p>
                 </div>
-            </div>
-            
+            </div>            
             <div class="slider-imgs-container col mx-auto">
                 <swiper class="mySwiper2"
                     [slidesPerView]="3" 
@@ -252,7 +249,8 @@
                                     <img class="img w-100" 
                                         
                                         [src]="imageUrl + img.file_path" 
-                                        alt="{{img.title}}">
+                                        alt="{{img.title}}"
+                                        [routerLink]="['/show-image-viewer', images.id, i]" />
                                     <!-- <img class="img w-100" *ngIf="!mov?.poster_path" [src]="src/assets/images/no_img.png" alt="{{mov.title}}"> -->
                                 </div>
                             </div>
@@ -265,7 +263,6 @@
             <div class="header-div mx-auto mb-3">
                 <h2>Cast</h2>
             </div>
-
             <div class="slider-cast-container col mx-auto">
                 <swiper class="mySwiper1"
                     [slidesPerView]="6" 

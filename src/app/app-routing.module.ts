@@ -16,8 +16,12 @@ const routes: Routes = [
   { path: 'show/:id', loadChildren: () => import('./main/tv-shows/show-item/show-item.module').then(m => m.ShowItemModule) },
   { path: 'show-image-gall/:id', loadChildren: () => import('./main/tv-shows/show-image-gall/show-image-gall.module').then(m => m.ShowImageGallModule) },
   { path: 'movie-image-viewer/:id/:index', loadChildren: () => import('./main/movies/movie-image-viewer/movie-image-viewer.module').then(m => m.MovieImageViewerModule) },
+  { path: 'show-image-viewer/:id/:index', loadChildren: () => import('./main/tv-shows/show-image-viewer/show-image-viewer.module').then(m => m.ShowImageViewerModule) },
+  { path: 'show-video-gall/:id', loadChildren: () => import('./main/tv-shows/show-video-gall/show-video-gall.module').then(m => m.ShowVideoGallModule) },
+  { path: 'movie-video-gall/:id', loadChildren: () => import('./main/movies/movie-video-gall/movie-video-gall.module').then(m => m.MovieVideoGallModule) },
+  { path: 'movie-video-viewer/:id/:index', loadChildren: () => import('./main/movies/movie-video-viewer/movie-video-viewer.module').then(m => m.MovieVideoViewerModule) },
+  { path: 'show-video-viewer/:id/:index', loadChildren: () => import('./main/tv-shows/show-video-viewer/show-video-viewer.module').then(m => m.ShowVideoViewerModule) },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
-  
   { path: '**', component: PageNotFoundComponent }
 ];
 

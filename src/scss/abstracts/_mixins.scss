@@ -41,7 +41,7 @@
     border: none;
     outline: none;
     @include media-sm {
-        top: 0;
+        // top: 0;
     }
     &:focus,
     &:active,

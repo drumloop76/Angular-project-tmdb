@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
-import { MoviesService } from 'src/app/service/movies.service';
+import { TvShowsService } from 'src/app/service/tv-shows.service';
 
 @Component({
-  selector: 'app-movie-image-viewer',
-  templateUrl: './movie-image-viewer.component.html',
-  styleUrls: ['./movie-image-viewer.component.scss']
+  selector: 'app-show-image-viewer',
+  templateUrl: './show-image-viewer.component.html',
+  styleUrls: ['./show-image-viewer.component.scss']
 })
-export class MovieImageViewerComponent implements OnInit {
+export class ShowImageViewerComponent implements OnInit {
   id!: number;
-  movie: any;
+  show: any;
   images: any;
   imageId: any;
   imgsLength: any;
@@ -22,31 +22,31 @@ export class MovieImageViewerComponent implements OnInit {
   // imageIndex: any;
   // active: any;
 
-  constructor(private service: MoviesService,  private route: ActivatedRoute) { }
+  constructor(private service: TvShowsService,  private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {
       this.id = params['id'];
-      this.getMovieImages(this.id);
-      this.getMovie(this.id);
+      this.getShowImages(this.id);
+      this.getTvShow(this.id);
     });
     this.activeIndex  = this.route.snapshot.paramMap.get('index');
     // console.log(this.activeIndex, typeof this.activeIndex)
     this.imageIndex = this.activeIndex;
   }
 
-  getMovieImages(id: any) {
-    this.service.getMovieImages(id).subscribe((data: any) => {
-      console.log(data.backdrops)
+  getShowImages(id: any) {
+    this.service.getShowImages(id).subscribe((data: any) => {
+      // console.log(data.backdrops)
       this.images = data.backdrops;
       this.imageId = data.id;
     });
   }
 
-  getMovie(id: any): void {
-    this.service.getMovie(id).subscribe((data: any) => {
+  getTvShow(id: any): void {
+    this.service.getOneShowDetails(id).subscribe((data: any) => {
       // console.log(data)
-      this.movie = data;
+      this.show = data;
     });
   }
 
@@ -56,5 +56,5 @@ export class MovieImageViewerComponent implements OnInit {
     console.log(event.current)
     this.imageIndex = event.current;
   }
-  
+
 }

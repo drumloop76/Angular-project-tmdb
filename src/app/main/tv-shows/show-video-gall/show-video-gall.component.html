@@ -1,0 +1,29 @@
+<div class="container-xxl">
+    <div class="info col-10 mx-auto mt-4 d-flex" *ngIf="show">
+        <div class="col-1" [routerLink]="['/show', show.id]">
+            <img *ngIf="show" src="{{ imageUrl }}{{ show?.poster_path }}" alt="">
+        </div>
+        <div class="col-11 ps-4">
+            <h3 *ngIf="show" class="">{{show.title}}</h3>
+            <p *ngIf="show" class="">( {{ show?.release_date | date:"yyyy" }} )</p>
+        </div>
+    </div>
+    <div class="col-10 mx-auto my-5">
+        <div *ngIf="videos" class="gall d-flex flex-wrap">
+            <div class="img-container col-3 p-1" *ngFor="let video of videos; let index = index">
+                <div class="position-relative" [routerLink]="['/show-video-viewer', show?.id, video?.id]">
+                    <img class="img" src="https://img.youtube.com/vi/{{video?.key}}/mqdefault.jpg" alt="">
+                    <div class="play-icon">
+                        <fa-icon [icon]="['fas', 'play']"></fa-icon>
+                    </div>
+                </div>
+                <div class="video-name">
+                    {{video?.name}}
+                </div>
+                <div class="video-type">
+                    {{video?.type}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
