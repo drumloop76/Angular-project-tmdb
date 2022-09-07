@@ -12,6 +12,7 @@ export class TvShowsService {
   region: string;
   sciFiGenre: string;
   page: number = 1;
+  anima: any;
 
   constructor(private http:HttpClient) { 
     this.baseUrl = 'https://api.themoviedb.org/3/';
@@ -25,8 +26,13 @@ export class TvShowsService {
     return this.http.get(`${this.baseUrl}tv/popular?api_key=${this.apiKey}&with_genres=${this.sciFiGenre}&language=${this.language}`);
   }
 
-  getSfTopRatedSeries(page: number, pageSize: number): Observable<any> {
-    return this.http.get(`${this.baseUrl}tv/top_rated?api_key=${this.apiKey}&with_genres=${this.sciFiGenre}&language=${this.language}&page=${page}`);
+  setCategory(value: string): void {
+    this.sciFiGenre = `10765,${value}`
+    this.getSfTopRatedSeries(this.page, this.anima)
+  }
+  
+  getSfTopRatedSeries(page: number, anima: number): Observable<any> {
+    return this.http.get(`${this.baseUrl}discover/tv?api_key=${this.apiKey}&sort_by=popularity.desc&with_genres=${this.sciFiGenre}&without_genres=${anima}&language=${this.language}&include_adult=false&page=${page}`);
   }
 
   getOneShowDetails(id: string): Observable<any> {
@@ -59,5 +65,9 @@ export class TvShowsService {
 
   getSimilarSeries(id: string) {
     return this.http.get(`${this.baseUrl}tv/${id}/similar?api_key=${this.apiKey}&language=${this.language}`);
+  }
+
+  getShowGenres(): Observable<any> {
+    return this.http.get(`${this.baseUrl}genre/tv/list?api_key=${this.apiKey}&language=${this.language}`);
   }
 }

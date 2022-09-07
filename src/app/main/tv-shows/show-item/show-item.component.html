@@ -466,7 +466,9 @@
                     [virtual]="true">
                     <ng-container *ngFor="let movs of similarShows; index as i">
                         <ng-template class="sw-temlate d-flex flex-column justify-content-between" swiperSlide>
-                            <div class="img-container" [routerLink]="['/movie', movs.id]">
+                            <div class="img-container" 
+                                [routerLink]="['/movie', movs.id]"
+                                (click)="goToRandomNumberPage($event, movs?.id)">
                                 <img class="w-100" 
                                     *ngIf="movs?.poster_path"
                                     [src]="imageUrl + movs.poster_path" 

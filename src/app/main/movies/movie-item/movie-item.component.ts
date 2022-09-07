@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { LanguagesService } from 'src/app/service/languages.service';
 import { MoviesService } from 'src/app/service/movies.service';
 import SwiperCore, { Navigation, Virtual } from 'swiper';
@@ -43,7 +43,8 @@ export class MovieItemComponent implements OnInit {
 
   constructor(private service: MoviesService, 
               private router: ActivatedRoute, 
-              private serviceLang: LanguagesService) { }
+              private serviceLang: LanguagesService,
+              private route: Router) { }
 
   ngOnInit(): void {
     this.router.params.subscribe((params: Params) => {
@@ -52,9 +53,10 @@ export class MovieItemComponent implements OnInit {
       this.getMovieCredits(this.id);
       this.getMovieImages(this.id);
       this.getMovieVideos(this.id);
-      this.getRecommendedMovies(this.id);
-      this.getLanguages();
+      this.getSimilarMovies(this.id);
       this.getMovieReviews(this.id);
+      this.getLanguages();
+      
     });
   }
 
@@ -100,15 +102,22 @@ export class MovieItemComponent implements OnInit {
           this.trailerUrl = `${this.baseUrl}${this.trailer.key}`
         }
 
-        this.isOpen = true;
+        // this.isOpen = true;
       }
     });
   }
 
-  getRecommendedMovies(id: any) {
-    this.service.getRecommendedMovies(id).subscribe((data: any) => {
-      // console.log(data.results)
-      this.recommendedMovies = data.results;
+  getSimilarMovies(id: any) {
+    this.service.getSimilarMovies(id).subscribe((data: any) => {
+      let res = data.results
+      if(res) {
+        res.map((mov: any) => {
+          console.log(mov.genre_ids.includes(878))
+          if(mov.genre_ids.includes(878)) {
+            this.recommendedMovies.push(mov)
+          }
+        })
+      }
     });
   }
 
@@ -124,5 +133,12 @@ export class MovieItemComponent implements OnInit {
       // console.log(data.results)
       this.reviews = data.results;
     })
+  }
+
+  goToRandomNumberPage(event: any, id:any) {
+    event.preventDefault();
+
+    this.route.navigateByUrl('/', {skipLocationChange: true})
+      .then(() => this.route.navigate(['/movie', id]));
   }
 }

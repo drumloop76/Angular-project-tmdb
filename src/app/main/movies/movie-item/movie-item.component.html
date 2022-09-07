@@ -100,19 +100,19 @@
 
         <div class="video col-11 mx-auto mb-5 mt-5">
             <div class="col">
-                <div *ngIf="movie" class="header-div mx-auto">
-                    <h2 [routerLink]="['/movie-video-gall', movie.id]">
+                <div *ngIf="videos" class="header-div mx-auto">
+                    <h2 [routerLink]="['/movie-video-gall', movie?.id]">
                         Videos 
                         <span class="title-nums fw-light">
                             ({{videosLength}})
                         </span>
                     </h2>
                 </div>
-                <div *ngIf="movie">
+                <div *ngIf="videos">
                     <p>Click 
                         <a href="javascript: void(0)" 
                             class="gall-link text-decoration-underline mx-1"
-                            [routerLink]="['/movie-video-gall', movie.id]">
+                            [routerLink]="['/movie-video-gall', movie?.id]">
                             here</a> 
                         and go to video gallery
                     </p>
@@ -173,8 +173,8 @@
             </div>
         </div>
         <div class="video col-11 mx-auto mb-5 mt-5">
-            <div class="col">
-                <div *ngIf="movie" class="header-div mx-auto">
+            <div class="col" *ngIf="images">
+                <div class="header-div mx-auto">
                     <h2 [routerLink]="['/movie-image-gall', movie.id]">
                         Images 
                         <span class="title-nums fw-light pb-5">
@@ -182,7 +182,7 @@
                         </span>
                     </h2>
                 </div>
-                <div *ngIf="movie">
+                <div>
                     <p>Click 
                         <a href="javascript: void(0)" 
                             class="gall-link text-decoration-underline mx-1" 
@@ -317,7 +317,7 @@
                     <h2>Crew</h2>
                 </div>
                 <div>
-                    <p>Click <a>here</a> and read all reviews</p>
+                    <p>Click <a>here</a> and check all cast</p>
                 </div>
             </div>
 
@@ -404,7 +404,7 @@
         </div>
 
         <div class="cast col-11 mx-auto mb-5">
-            <div class="header-div mx-auto">
+            <div class="header-div mx-auto mb-3">
                 <h2>Recommended Movies</h2>
             </div>
             <div class="slider-cast-container col mx-auto">
@@ -443,27 +443,29 @@
                     }"
                     [navigation]="true"
                     [virtual]="true">
-                    <ng-container *ngFor="let movs of recommendedMovies; index as i">
+                    <ng-container *ngFor="let rec of recommendedMovies; index as i">
                         <ng-template class="sw-temlate d-flex flex-column justify-content-between" swiperSlide>
-                            <div class="img-container" [routerLink]="['/movie', movs.id]">
+                            <div class="img-container" 
+                                [routerLink]="['/movie/', rec.id]"
+                                (click)="goToRandomNumberPage($event, rec?.id)">
                                 <img class="w-100" 
-                                    *ngIf="movs?.poster_path"
-                                    [src]="imageUrl + movs.poster_path" 
-                                    alt="{{movs.name}}">
+                                    *ngIf="rec?.poster_path"
+                                    [src]="imageUrl + rec.poster_path" 
+                                    alt="{{rec.name}}">
                                 <img class="w-100" 
-                                    *ngIf="!movs?.poster_path" 
+                                    *ngIf="!rec?.poster_path" 
                                     [src]="noImage" 
-                                    alt="{{movs.title}}" />
+                                    alt="{{rec.title}}" />
                             </div>
-                            <div class="info-container pt-1" [routerLink]="['/movie', movs.id]">
+                            <div class="info-container pt-1" [routerLink]="['/movie', rec.id]">
                                 <div class="title-container lh-sm">
-                                    {{movs.title}}
+                                    {{rec.title}}
                                 </div>
                                 <div class="info d-inline-flex pt-3">
-                                    <span>{{ movs?.release_date | date:"yyyy" }}</span>
+                                    <span>{{ rec?.release_date | date:"yyyy" }}</span>
                                     <div class="vr mx-2"></div>
                                     <fa-icon [icon]="['fas', 'star']"></fa-icon>
-                                    <span>{{movs?.vote_average}}</span>
+                                    <span>{{rec?.vote_average}}</span>
                                 </div>
                             </div>
                         </ng-template>

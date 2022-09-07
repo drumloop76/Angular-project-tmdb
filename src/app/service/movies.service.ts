@@ -12,6 +12,7 @@ export class MoviesService {
   region: string;
   sciFiGenre: string;
   page: number = 1;
+  anima: any;
 
   constructor(private http:HttpClient) { 
     this.baseUrl = 'https://api.themoviedb.org/3/';
@@ -33,8 +34,12 @@ export class MoviesService {
     return this.http.get(`${this.baseUrl}movie/upcoming?api_key=${this.apiKey}&with_genres=${this.sciFiGenre}&page=${this.page}&language=${this.language}`);
   }
   
-  getSfTopRatedMovies(page: number, pageSize: number): Observable<any> {
-    return this.http.get(`${this.baseUrl}movie/top_rated?api_key=${this.apiKey}&with_genres=${this.sciFiGenre}&language=${this.language}&page=${page}`);
+  setCategory(value: string): void {
+    this.sciFiGenre = `878,${value}`
+    this.getSfTopRatedMovies(this.page, this.anima)
+  }
+  getSfTopRatedMovies(page: number, anima: number): Observable<any> {
+    return this.http.get(`${this.baseUrl}discover/movie?api_key=${this.apiKey}&sort_by=popularity.desc&with_genres=${this.sciFiGenre}&without_genres=${anima}&language=${this.language}&include_adult=false&page=${page}`);
   }
 
   getMovie(id: string): Observable<any> {
@@ -53,17 +58,20 @@ export class MoviesService {
     return this.http.get(`${this.baseUrl}movie/${id}/images?api_key=${this.apiKey}`);
   }
 
-  getRecommendedMovies(id: string): Observable<any> {
-    return this.http.get(`${this.baseUrl}movie/${id}/recommendations?api_key=${this.apiKey}`);
+  getSimilarMovies(id: string): Observable<any> {
+    return this.http.get(`${this.baseUrl}movie/${id}/similar?api_key=${this.apiKey}&with_genres=${this.sciFiGenre}&language=${this.language}&page=1`);
   }
 
   getMovieReviews(id: string): Observable<any> {
     return this.http.get(`${this.baseUrl}movie/${id}/reviews?api_key=${this.apiKey}&language=${this.language}&page=1`);
   }
 
-
   getTopRated(): Observable<any> {
     return this.http.get(`${this.baseUrl}discover/movie?api_key=${this.apiKey}&sort_by=vote_count.desc&with_genres=${this.sciFiGenre}&language=en-US&page=1`);
+  }
+
+  getMoviesGenres(): Observable<any> {
+    return this.http.get(`${this.baseUrl}genre/movie/list?api_key=${this.apiKey}&language=${this.language}`);
   }
 }
 

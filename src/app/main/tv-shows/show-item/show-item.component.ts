@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { LanguagesService } from 'src/app/service/languages.service';
 import { TvShowsService } from 'src/app/service/tv-shows.service';
 import SwiperCore, { Navigation, Virtual } from 'swiper';
@@ -25,7 +25,7 @@ export class ShowItemComponent implements OnInit {
   recommendedSeries: any;
   genres: any[] = [];
   reviews: any[] = [];
-  similarShows: any;
+  similarShows: any[] = [];
 
   noImage = './assets/images/no_img2.png'
 
@@ -46,7 +46,8 @@ export class ShowItemComponent implements OnInit {
 
   constructor(private service: TvShowsService, 
               private router: ActivatedRoute, 
-              private serviceLang: LanguagesService) { }
+              private serviceLang: LanguagesService,
+              private route: Router) { }
 
   ngOnInit(): void {
     this.router.params.subscribe((params: Params) => {
@@ -57,6 +58,7 @@ export class ShowItemComponent implements OnInit {
       this.getShowVideos(this.id);
       this.getSimilarSeries(this.id);
       this.getShowReviews(this.id);
+      this.getLanguages();
     });
   }
 
@@ -92,7 +94,7 @@ export class ShowItemComponent implements OnInit {
 
   getShowVideos(id: any) {
     this.service.getShowVideos(id).subscribe((data: any) => {
-      // console.log(data.results)
+      console.log(data.results)
       this.videosLength = data.results.length;
       if (data.results.length) {
         this.videos = data.results;
@@ -105,7 +107,7 @@ export class ShowItemComponent implements OnInit {
           this.trailerUrl = `${this.baseUrl}${this.trailer.key}`
         }
 
-        this.isOpen = true;
+        // this.isOpen = true;
       }
     });
   }
@@ -113,7 +115,17 @@ export class ShowItemComponent implements OnInit {
   getSimilarSeries(id: any){
     this.service.getSimilarSeries(id).subscribe((data: any) => {
       // console.log(data.results)
-      this.similarShows = data.results;
+      // this.similarShows = data.results;
+      let res = data.results
+      if(res) {
+        res.map((s: any) => {
+          // console.log(mov.genre_ids.includes(878))
+          if(s.genre_ids.includes(10765)) {
+            this.similarShows.push(s)
+          }
+          
+        })
+      }
     });
   }
 
@@ -129,6 +141,13 @@ export class ShowItemComponent implements OnInit {
       // console.log(data.results)
       this.genres = data.results;
     })
+  }
+
+  goToRandomNumberPage(event: any, id:any) {
+    event.preventDefault();
+
+    this.route.navigateByUrl('/', {skipLocationChange: true})
+      .then(() => this.route.navigate(['/show', id]));
   }
 
 }

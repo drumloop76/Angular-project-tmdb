@@ -12,6 +12,19 @@
                 <div class="page-info col-lg-4 mx-2">
                     <span class="text-light b-0">Page no. {{ currentPage }}</span>
                 </div>
+                <!--  -->
+                <div>
+                    <label class="custom-control-label text-light" for="switchCategory">With Animations</label>
+                    <input type="checkbox" class="custom-control-input" id="switchCategory" (click)="onSwitchCategoryClick($event)">
+                </div>
+                <div class="">
+                    <select class="select"
+                        (change)="selectCategory($event.target)">
+                        <option value="all">All</option>
+                        <option *ngFor="let gen of showGenres" value="{{ gen.id }}">{{ gen.name }}</option>
+                    </select>
+                </div>
+                <!--  -->
             </div>
         </div>
     </div>
@@ -40,7 +53,7 @@
             </div>
         </div>
     </div>
-    <app-pagination [collectionSize]="collectionSize"  (onChange)="onPageChanged($event)"></app-pagination>
+    <app-pagination [collectionSize]="collectionSize" [pageSize]="itemsPerPage" (onChange)="onPageChanged($event)"></app-pagination>
 </div>
 
 
