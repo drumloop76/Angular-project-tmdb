@@ -1,0 +1,52 @@
+@import "src/styles.scss";
+
+.title {
+    font-size: 45px;
+    color: $black;
+    font-weight: 600;
+    @include media-lg {
+        font-size: 40px;
+    }
+    @include media-sm {
+        font-size: 35px;
+    }
+}
+
+.cast-container-list {
+    &:hover {
+        box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+        background-color: $white30;
+
+    }
+}
+
+.crew-poster-container {
+    @include media-lg {
+        
+    }
+    @include media-sm {
+        
+    }
+}
+
+.cast-title a,
+.crew-title a {
+    font-size: 18px;
+    font-weight: $font-medium;
+    @include media-lg {
+        font-size: 17px;
+    }
+    @include media-sm {
+        font-size: 16px;
+    }
+    span {
+        font-size: 16px;
+        font-weight: $font-regular;
+        @include media-lg {
+            font-size: 15px;
+        }
+        @include media-sm {
+            font-size: 14px;
+        }
+    }
+}

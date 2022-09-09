@@ -112,7 +112,7 @@ export class MovieItemComponent implements OnInit {
       let res = data.results
       if(res) {
         res.map((mov: any) => {
-          console.log(mov.genre_ids.includes(878))
+          // console.log(mov.genre_ids.includes(878))
           if(mov.genre_ids.includes(878)) {
             this.recommendedMovies.push(mov)
           }

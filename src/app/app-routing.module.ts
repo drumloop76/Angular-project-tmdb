@@ -21,6 +21,7 @@ const routes: Routes = [
   { path: 'movie-video-gall/:id', loadChildren: () => import('./main/movies/movie-video-gall/movie-video-gall.module').then(m => m.MovieVideoGallModule) },
   { path: 'movie-video-viewer/:id/:index', loadChildren: () => import('./main/movies/movie-video-viewer/movie-video-viewer.module').then(m => m.MovieVideoViewerModule) },
   { path: 'show-video-viewer/:id/:index', loadChildren: () => import('./main/tv-shows/show-video-viewer/show-video-viewer.module').then(m => m.ShowVideoViewerModule) },
+  { path: 'person/:id', loadChildren: () => import('./main/person/person.module').then(m => m.PersonModule) },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent }
 ];

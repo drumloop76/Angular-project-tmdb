@@ -43,7 +43,7 @@
                     <dt class="fw-bold me-2">Cast: </dt>
                     <div class="cast-container">
                         <div class="cast-container-list d-inline-block split" *ngFor="let c of cast | slice:0:3">
-                            <a class="mb-0">{{ c.name }}</a>
+                            <a class="mb-0" [routerLink]="['/person', c.id]">{{ c.name }}</a>
                         </div>
                     </div>
                 </div>
@@ -285,7 +285,7 @@
                     [virtual]="true">
                     <ng-container *ngFor="let c of cast; index as i">
                         <ng-template class="sw-temlate d-flex flex-column justify-content-between" swiperSlide>
-                            <div class="img-container">
+                            <div class="img-container" [routerLink]="['/person', c.id]">
                                 <img class="w-100" 
                                     *ngIf="c?.profile_path"
                                     [src]="imageUrl + c?.profile_path" 
@@ -335,7 +335,7 @@
                     <dt class="fw-bold me-2 mb-0">Producer: </dt>
                     <div class="cast-container">
                         <div class="cast-container-list d-inline-block mb-0 split" *ngFor="let cr of crew | filterArray:'Producer'">
-                            <a class="mb-0">{{ cr.name }}</a>
+                            <a class="mb-0" [routerLink]="['/person', cr.id]">{{ cr.name }}</a>
                         </div>
                     </div>
                 </div>
@@ -344,7 +344,7 @@
                     <dt class="fw-bold me-2 mb-0">Writer: </dt>
                     <div class="cast-container">
                         <div class="cast-container-list d-inline-block mb-0 split" *ngFor="let cr of crew | filterArray:'Writer'">
-                            <a class="mb-0">{{ cr.name }}</a>
+                            <a class="mb-0" [routerLink]="['/person', cr.id]">{{ cr.name }}</a>
                         </div>
                     </div>
                 </div>
@@ -353,7 +353,7 @@
                     <dt class="fw-bold me-2 mb-0">Casting: </dt>
                     <div class="cast-container">
                         <div class="cast-container-list d-inline-block mb-0 split" *ngFor="let cr of crew | filterArray:'Casting'">
-                            <a class="mb-0">{{ cr.name }}</a>
+                            <a class="mb-0" [routerLink]="['/person', cr.id]">{{ cr.name }}</a>
                         </div>
                     </div>
                 </div>
@@ -362,7 +362,7 @@
                     <dt class="fw-bold me-2 mb-0">Screenplay: </dt>
                     <div class="cast-container">
                         <div class="cast-container-list d-inline-block mb-0 split" *ngFor="let cr of crew | filterArray:'Screenplay'">
-                            <a class="mb-0">{{ cr.name }}</a>
+                            <a class="mb-0" [routerLink]="['/person', cr.id]">{{ cr.name }}</a>
                         </div>
                     </div>
                 </div>

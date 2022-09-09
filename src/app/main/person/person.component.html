@@ -1,0 +1,85 @@
+<div class="container-xxl g-0 bg-light">
+    <div class="col-lg-10 mx-auto">
+        <div class="hero-container col-sm-12 col-11 mx-auto py-2 pe-sm-3 d-sm-flex justify-content-center">
+            <div class="hero-img-container col-md-3 col-4 mx-md-3 mx-auto">
+                <img class="hero-poster col-12" src="{{ imageUrl }}{{ person?.profile_path }}" alt="">
+            </div>
+            <div class="hero-info-container col-md-8 col-sm-7 ps-md-4 mt-sm-0 mt-4">
+                <div class="container-left col-lg-12">
+                    <div class="header-container mb-sm-5 mb-3">
+                        <span class="title lh-sm me-3 mb-0">{{ person?.name }}</span>
+                    </div>
+                    <div class="col-12 d-flex">
+                        <dt class="fw-bold me-2">Known for: </dt>
+                        <p *ngIf="person" class="mb-0">{{ person?.known_for_department }}</p>
+                    </div>
+                    <hr class="col-lg-12">
+                    <div class="col-12 d-flex">
+                        <dt class="fw-bold me-2 mb-0">Birth date: </dt>
+                        <p *ngIf="person" class="mb-0">{{ person.birthday | date:"MMMM d, y" }}</p>
+                    </div>
+                    <hr class="col-lg-12">
+                    <div class="cast col-12 d-flex">
+                        <dt class="fw-bold me-2">Place of birth: </dt>
+                        <p class="mb-0">{{ person?.place_of_birth }}</p>
+                    </div>
+                    <hr class="col-lg-12">
+                </div>
+            </div>
+        </div>
+        <div class="container-bios col-11 mx-auto mb-5 mt-sm-2">
+            <div class="col-12 d-flex">
+                <dt class="fw-bold me-2">Biography: </dt>
+                <div class="text d-flex" *ngIf="person">
+                    <app-show-more [text]="person?.biography" [textLength]="250"></app-show-more>
+                </div>
+            </div>
+        </div>
+        <!--  -->
+        <div class="cast col-11 mx-auto mb-5">
+            <div class="header-div mx-auto mb-3">
+                <h2>Filmography</h2>
+            </div>
+            <div class="col mx-auto">
+                <div class="col border-bottom mb-2 pb-2" *ngIf="castSF">
+                    <dt class="fw-bold me-2 mb-0">As actor: </dt>
+                    <div class="cast-container">
+                        <div class="cast-container-list border mb-0 d-flex p-2 m-2" *ngFor="let cs of castSF">
+                            <div class="crew-poster-container col-sm-1 col-2" [routerLink]="['/movie', cs?.id]">
+                                <img class="crew-poster w-100" src="{{ imageUrl }}{{ cs?.poster_path }}" alt="">
+                            </div>
+                            <div class="cast-title ps-3">
+                                <a *ngIf="cs.media_type === 'movie'" class="mb-0 text-primary" [routerLink]="['/movie', cs?.id]">{{ cs?.original_title }}</a>
+                                <a *ngIf="cs.media_type === 'tv'" class="mb-0 text-primary" [routerLink]="['/show', cs?.id]">{{ cs?.name }} <span class="text-dark">(TV Show)</span></a>
+                                <p>{{ cs?.character }}</p>
+                            </div>
+                            <div class="ms-auto">
+                                <p *ngIf="cs.media_type === 'movie'">{{ cs.release_date | date:'yyyy' }}</p>
+                                <p *ngIf="cs.media_type === 'tv'">{{ cs.first_air_date | date:'yyyy' }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col border-bottom mb-2 pb-2" *ngIf="crewSF.length">
+                    <dt class="fw-bold me-2 mb-0">As crew: </dt>
+                    <div class="cast-container">
+                        <div class="cast-container-list border mb-0 d-flex p-2" *ngFor="let cr of crewSF">
+                            <div class="col-1" [routerLink]="['/movie', cr?.id]">
+                                <img class="hero-poster w-100" src="{{ imageUrl }}{{ cr?.poster_path }}" alt="">
+                            </div>
+                            <div class="crew-title ps-3">
+                                <a *ngIf="cr.media_type === 'movie'" class="mb-0 text-primary" [routerLink]="['/movie', cr?.id]">{{ cr?.original_title }}</a>
+                                <a *ngIf="cr.media_type === 'tv'" class="mb-0 text-primary" [routerLink]="['/show', cr?.id]">{{ cr?.name }} <span>(TV Show)</span></a>
+                                <p>{{ cr?.character }}</p>
+                            </div>
+                            <div class="ms-auto">
+                                <p *ngIf="cr.media_type === 'movie'">{{ cr.release_date | date:'yyyy' }}</p>
+                                <p *ngIf="cr.media_type === 'tv'">{{ cr.first_air_date | date:'yyyy' }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
